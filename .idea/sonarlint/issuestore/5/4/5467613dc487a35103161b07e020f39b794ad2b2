@@ -1,0 +1,22 @@
+
+	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(³Š­¡şÿÿÿÿ8á–¹Óø1J$88f7bcc8-a426-46f5-b479-7743f05da8b0
+‰
+java:S1192"FDefine a constant instead of duplicating this literal "UTF-8" 3 times.(ÒÄ©“8‹ıº÷1J$4e65012c-1268-43be-871f-6a3b0ccc85d8
+‰
+java:S1854"ARemove this useless assignment to local variable "secretKeySpec".(Ô’°Ûüÿÿÿÿ8—¹Óø1J$5de720f5-0c24-4c6b-8fee-44e79185fcf7
+~	java:S125"<This block of commented-out lines of code should be removed.(†£è8Â°îº÷1J$03ca5383-f7f0-45cd-9086-32cb902d2ed9
+{
+java:S4719"9Replace charset name argument with StandardCharsets.UTF_8(¢ş¡P8Ù°üº÷1J$6a0c3c5d-8a10-404e-83f2-637fd91eafd0
+~
+java:S6437"6Revoke and change this password, as it is compromised.(Ô’°Ûüÿÿÿÿ8©Ç‰»÷1J$6b746b0f-005e-4cb2-940a-26861596d0e8
+z
+java:S1481"2Remove this unused "secretKeySpec" local variable.(Ô’°Ûüÿÿÿÿ8—¹Óø1J$54963e74-35cc-41f6-bea8-23f13b033e69
+s
+java:S5542"+Use another cipher mode or disable padding.(ø¾¢çıÿÿÿÿ8áÛ…»÷1J$4835165c-085c-46a1-b060-9552a3e08d9f
+~	java:S125"<This block of commented-out lines of code should be removed.(‹´‘8—¹Óø1J$fe23f584-777a-4161-9697-8bca5a675b20
+|
+java:S4719 "9Replace charset name argument with StandardCharsets.UTF_8(ãìÅ8¤Üıº÷1J$6737a5d0-d124-4525-b9d9-644fe7a2895f
+m	java:S106,"+Replace this use of System.out by a logger.(«·÷8Ê°îº÷1J$f26d80c4-cc45-4893-9f21-ce55b7bd6e6d
+p
+java:S1068
+"-Remove this unused "ENCRT_SAT" private field.(ÔâŠı8Â¯…»÷1J$a713968f-0bbe-4e7a-9ba3-730cdbfde7ac
