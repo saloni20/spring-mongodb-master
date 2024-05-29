@@ -2,8 +2,10 @@ package com.spring.mongo.api.resource.serviceImpl;
 
 import com.spring.mongo.api.entity.FieldMaster;
 import com.spring.mongo.api.entity.ScreenMaster;
+import com.spring.mongo.api.entity.ScreenSavingData;
 import com.spring.mongo.api.repository.FieldMasterRepository;
 import com.spring.mongo.api.repository.ScreenMasterRepository;
+import com.spring.mongo.api.repository.ScreenSaveDataRepository;
 import com.spring.mongo.api.resource.request.FieldRequest;
 import com.spring.mongo.api.resource.request.ScreenMasterRequest;
 import com.spring.mongo.api.resource.response.Response;
@@ -25,6 +27,7 @@ public class ScreenServiceImpl implements ScreenService {
 
     private final ScreenMasterRepository screenMasterRepository;
     private final FieldMasterRepository fieldMasterRepository;
+    private final ScreenSaveDataRepository screenSaveDataRepository;
 
     @Override
     public Response addScreenMaster(ScreenMasterRequest screenMasterRequest) {
@@ -126,5 +129,17 @@ public class ScreenServiceImpl implements ScreenService {
             screenMasterRepository.delete(screenMaster);
         }
         return new Response("Transaction completed successfully.", HttpStatus.OK);
+    }
+
+    @Override
+    public Response saveScreenData(ScreenSavingData screenSavingData) {
+        screenSaveDataRepository.save(screenSavingData);
+        return new Response("Data Saved Successfully.", screenSavingData.getScreenId(), HttpStatus.OK);
+    }
+
+    @Override
+    public Response findScreenDataById(String screenId) {
+        Optional<ScreenSavingData> dataOptional = screenSaveDataRepository.findById(screenId);
+        return dataOptional.map(screenSavingData -> new Response("Data Fetched", screenSavingData, HttpStatus.OK)).orElseGet(() -> new Response("No such screen data found", null, HttpStatus.BAD_REQUEST));
     }
 }

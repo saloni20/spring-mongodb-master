@@ -755,3 +755,11 @@ u
 Esrc/main/java/com/spring/mongo/api/resource/dto/AdminRegisterDto.java,7\b\7b2d8c344dcd05666ea605d0e76afd99fbd8e10c
 t
 Dsrc/main/java/com/spring/mongo/api/resource/dto/LoginRequestDto.java,1\0\102447906331ff581f7a9161ca58041c98aa58a3
+{
+Ksrc/main/java/com/spring/mongo/api/repository/ScreenSaveDataRepository.java,7\c\7c3da84e1e3cb61c2f08ce51f3e50a886f739dab
+o
+?src/main/java/com/spring/mongo/api/entity/ScreenSavingData.java,4\9\49a2d0e5356c7e29fe19062ce8ef24854439b7f2
+i
+9src/main/java/com/spring/mongo/api/entity/ColumnData.java,a\f\af57ed53aecb006cfbad1e48c3d57ee17893d7b0
+f
+6src/main/java/com/spring/mongo/api/entity/RowData.java,6\5\6555b4c194438054b9f8d5e04dd0bdfafb9fdea6
