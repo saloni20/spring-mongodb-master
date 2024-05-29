@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @AllArgsConstructor
+@CrossOrigin
 public class FieldController {
 
     private final FieldService fieldService;
