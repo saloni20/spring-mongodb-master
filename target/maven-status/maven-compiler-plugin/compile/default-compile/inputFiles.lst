@@ -19,8 +19,10 @@ E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\c
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\service\InputService.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\serviceImpl\InputServiceImpl.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\repository\UserMasterRepository.java
+E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\repository\ScreenSaveDataRepository.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\dto\AdminRegisterDto.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\repository\InputMasterRepository.java
+E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\entity\RowData.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\service\JwtService.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\serviceImpl\FieldServiceImpl.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\config\SecurityConfig.java
@@ -29,9 +31,11 @@ E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\d
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\service\AdminLoginServiceImpl.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\request\InputMasterRequest.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\service\FieldService.java
+E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\entity\ScreenSavingData.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\request\FieldRequest.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\URLDecryption.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\controller\AdminLoginController.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\dto\LoginRequestDto.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\service\AdminLoginService.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\repository\ScreenMasterRepository.java
+E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\entity\ColumnData.java

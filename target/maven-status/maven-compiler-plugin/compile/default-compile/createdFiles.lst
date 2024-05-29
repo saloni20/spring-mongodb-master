@@ -1,3 +1,4 @@
+com\spring\mongo\api\repository\ScreenSaveDataRepository.class
 com\spring\mongo\api\resource\controller\AdminLoginController.class
 com\spring\mongo\api\resource\controller\FieldController.class
 com\spring\mongo\api\resource\service\JwtService.class
@@ -18,6 +19,7 @@ com\spring\mongo\api\resource\serviceImpl\JwtAuthenticationEntryPoint.class
 com\spring\mongo\api\resource\service\InputService.class
 com\spring\mongo\api\resource\serviceImpl\ScreenServiceImpl.class
 com\spring\mongo\api\entity\ScreenMaster.class
+com\spring\mongo\api\entity\ScreenSavingData.class
 com\spring\mongo\api\resource\request\ScreenMasterRequest.class
 com\spring\mongo\api\entity\RoleMaster.class
 com\spring\mongo\api\resource\service\AdminLoginServiceImpl.class
@@ -33,5 +35,7 @@ com\spring\mongo\api\URLDecryption.class
 com\spring\mongo\api\resource\service\CustomUserDetailService.class
 com\spring\mongo\api\resource\controller\InputController.class
 com\spring\mongo\api\resource\request\InputMasterRequest.class
+com\spring\mongo\api\entity\ColumnData.class
 com\spring\mongo\api\resource\serviceImpl\FieldServiceImpl.class
+com\spring\mongo\api\entity\RowData.class
 com\spring\mongo\api\resource\service\ScreenService.class

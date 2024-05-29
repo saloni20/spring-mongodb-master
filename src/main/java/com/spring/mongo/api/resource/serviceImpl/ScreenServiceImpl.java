@@ -85,6 +85,7 @@ public class ScreenServiceImpl implements ScreenService {
     @Override
     public Response findScreenById(Integer id) {
         Optional<ScreenMaster> screenMasterOptional = screenMasterRepository.findById(id);
+        List<ScreenMasterRequest> screenMasterRequestList = new ArrayList<>();
         ScreenMasterRequest screenMasterRequest = new ScreenMasterRequest();
         if (screenMasterOptional.isPresent()) {
             ScreenMaster screenMaster = screenMasterOptional.get();
@@ -97,6 +98,15 @@ public class ScreenServiceImpl implements ScreenService {
             screenMasterRequest.setIsMandatory(screenMaster.getIsMandatory());
             screenMasterRequest.setIsDisabled(screenMaster.getIsDisabled());
             screenMasterRequest.setScreenField(screenMaster.getScreenField());
+            List<FieldRequest> fieldRequestList = new ArrayList<>();
+            List<FieldMaster> fieldMasterList = fieldMasterRepository.findAllByScreenId(Long.valueOf(screenMaster.getId()));
+            for (FieldMaster fieldMaster : fieldMasterList) {
+                FieldRequest fieldRequest = new FieldRequest();
+                BeanUtils.copyProperties(fieldMaster, fieldRequest);
+                fieldRequestList.add(fieldRequest);
+            }
+            screenMasterRequest.setFieldsMapList(fieldRequestList);
+            screenMasterRequestList.add(screenMasterRequest);
             return new Response("Transaction completed successfully.", screenMasterRequest, HttpStatus.OK);
         }
         return new Response("No data found.", HttpStatus.NOT_FOUND);

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @AllArgsConstructor
 @CrossOrigin
+@RequestMapping("/api")
 public class InputController {
 
     private final InputService inputService;
