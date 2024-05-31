@@ -1,11 +1,12 @@
 package com.spring.mongo.api.resource.response;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.http.HttpStatus;
 
-/**
- * @author Ajay
- */
+@Getter
+@Setter
 @NoArgsConstructor
 public class Response {
 
@@ -33,46 +34,6 @@ public class Response {
         this.message = message;
         this.status = status;
         this.data = data;
-        this.totalCount = totalCount;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public HttpStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(HttpStatus status) {
-        this.status = status;
-    }
-
-    public Object getData() {
-        return data;
-    }
-
-    public void setData(Object data) {
-        this.data = data;
-    }
-
-    public Long getTotalCount() {
-        return totalCount;
-    }
-
-    public void setTotalCount(Long totalCount) {
         this.totalCount = totalCount;
     }
 }

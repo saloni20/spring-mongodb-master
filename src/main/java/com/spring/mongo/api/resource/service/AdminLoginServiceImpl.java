@@ -7,9 +7,11 @@ import com.spring.mongo.api.repository.UserMasterRepository;
 import com.spring.mongo.api.resource.dto.AdminRegisterDto;
 import com.spring.mongo.api.resource.dto.LoginRequestDto;
 import com.spring.mongo.api.resource.dto.LoginResponseDto;
+import com.spring.mongo.api.resource.response.Response;
 import com.spring.mongo.api.resource.serviceImpl.JwtHelper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -30,7 +32,7 @@ public class AdminLoginServiceImpl implements AdminLoginService {
     private final UserMasterRepository userMasterRepository;
 
     @Override
-    public LoginResponseDto adminLogin(LoginRequestDto loginRequestDto) {
+    public Response login(LoginRequestDto loginRequestDto) {
         this.authenticate(loginRequestDto.getEmail(), loginRequestDto.getPassword());
         UserMaster user = customUserDetailService.loadUserByUsername(loginRequestDto.getEmail());
         String jwt = jwtService.genrateJwtToken(user);
@@ -38,11 +40,11 @@ public class AdminLoginServiceImpl implements AdminLoginService {
         loginResponseDto.setUsername(user.getUsername());
         loginResponseDto.setToken(jwt);
         log.info("Response : {}", loginResponseDto);
-        return loginResponseDto;
+        return new Response("Transaction completed successfully.", loginResponseDto, HttpStatus.OK);
     }
 
     @Override
-    public UserMaster saveAdmin(AdminRegisterDto adminRegisterDto) throws Exception {
+    public Response registerUser(AdminRegisterDto adminRegisterDto) {
         UserMaster user = new UserMaster();
         user.setEmail(adminRegisterDto.getEmail());
         user.setFirstname(adminRegisterDto.getFirstname());
@@ -55,9 +57,10 @@ public class AdminLoginServiceImpl implements AdminLoginService {
         user.setUserMasterPk(userMasterPk);
         Optional<UserMaster> userMaster = userMasterRepository.findByEmail(adminRegisterDto.getEmail());
         if (userMaster.isPresent()) {
-            throw new Exception("User Already Available With Given Mail ID");
+            return new Response("User already available with given mail id.", HttpStatus.BAD_REQUEST);
         }
-        return userRepository.save(user);
+        userRepository.save(user);
+        return new Response("Transaction completed successfully.", user, HttpStatus.OK);
     }
 
     @Override
