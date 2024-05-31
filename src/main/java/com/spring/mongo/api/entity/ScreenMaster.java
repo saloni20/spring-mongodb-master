@@ -18,5 +18,5 @@ public class ScreenMaster {
     private String isDisabled;
     private String postScreens;
     private String preScreens;
-    private String screenField;
+    private String isDraggable;
 }
