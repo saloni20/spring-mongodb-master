@@ -17,5 +17,6 @@ public class ScreenMasterRequest {
     private String postScreens;
     private String preScreens;
     private String isDraggable;
+    private String screenField;
     private List<FieldRequest> fieldsMapList;
 }

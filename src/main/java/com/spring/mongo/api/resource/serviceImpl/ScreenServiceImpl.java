@@ -46,6 +46,7 @@ public class ScreenServiceImpl implements ScreenService {
             screenMaster.setThumbnail(screenMasterRequest.getThumbnail());
             screenMaster.setIsMandatory(screenMasterRequest.getIsMandatory());
             screenMaster.setIsDisabled(screenMasterRequest.getIsDisabled());
+            screenMaster.setScreenField(screenMasterRequest.getScreenField());
             screenMaster.setIsDraggable(screenMasterRequest.getIsDraggable());
             screenMasterRepository.save(screenMaster);
             return new Response("Added Master Screen.", screenMaster.getId(), HttpStatus.OK);
@@ -82,6 +83,7 @@ public class ScreenServiceImpl implements ScreenService {
         screenMasterRequest.setThumbnail(screenMaster.getThumbnail());
         screenMasterRequest.setIsMandatory(screenMaster.getIsMandatory());
         screenMasterRequest.setIsDisabled(screenMaster.getIsDisabled());
+        screenMasterRequest.setScreenField(screenMaster.getScreenField());
         screenMasterRequest.setIsDraggable(screenMaster.getIsDraggable());
         return screenMasterRequest;
     }
@@ -101,6 +103,7 @@ public class ScreenServiceImpl implements ScreenService {
             screenMasterRequest.setThumbnail(screenMaster.getThumbnail());
             screenMasterRequest.setIsMandatory(screenMaster.getIsMandatory());
             screenMasterRequest.setIsDisabled(screenMaster.getIsDisabled());
+            screenMasterRequest.setScreenField(screenMaster.getScreenField());
             screenMasterRequest.setIsDraggable(screenMaster.getIsDraggable());
             List<FieldRequest> fieldRequestList = new ArrayList<>();
             List<FieldMaster> fieldMasterList = fieldMasterRepository.findAllByScreenId(Long.valueOf(screenMaster.getId()));
@@ -128,6 +131,7 @@ public class ScreenServiceImpl implements ScreenService {
             screenMaster.setThumbnail(screenMasterRequest.getThumbnail());
             screenMaster.setIsMandatory(screenMasterRequest.getIsMandatory());
             screenMaster.setIsDisabled(screenMasterRequest.getIsDisabled());
+            screenMaster.setScreenField(screenMasterRequest.getScreenField());
             screenMaster.setIsDraggable(screenMasterRequest.getIsDraggable());
             screenMasterRepository.save(screenMaster);
             return new Response("Transaction completed successfully.", screenMaster, HttpStatus.OK);
@@ -159,14 +163,14 @@ public class ScreenServiceImpl implements ScreenService {
 
     @Override
     public Response saveUserScreen(CustomizedScreenDto customizedScreenDto) {
-        Optional<CustomizedScreen> customizedScreenOptional = customizedScreenRepository.findByUserIdAndOrgId(customizedScreenDto.getUserId(),customizedScreenDto.getOrgId());
+        Optional<CustomizedScreen> customizedScreenOptional = customizedScreenRepository.findByUserIdAndOrgId(customizedScreenDto.getUserId(), customizedScreenDto.getOrgId());
         if (customizedScreenOptional.isEmpty()) {
             CustomizedScreen customizedScreen = new CustomizedScreen();
             customizedScreen.setUserId(customizedScreenDto.getUserId());
             customizedScreen.setOrgId(customizedScreenDto.getOrgId());
             customizedScreen.setScreenMasterList(customizedScreenDto.getScreenMasterList());
             customizedScreenRepository.save(customizedScreen);
-            return new Response("Transaction completed successfully.",HttpStatus.OK);
+            return new Response("Transaction completed successfully.", HttpStatus.OK);
         }
         return null;
     }
