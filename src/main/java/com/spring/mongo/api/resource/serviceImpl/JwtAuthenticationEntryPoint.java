@@ -2,7 +2,6 @@ package com.spring.mongo.api.resource.serviceImpl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.mongo.api.resource.response.Response;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -15,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@Slf4j
 @Component
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
     public JwtAuthenticationEntryPoint() {

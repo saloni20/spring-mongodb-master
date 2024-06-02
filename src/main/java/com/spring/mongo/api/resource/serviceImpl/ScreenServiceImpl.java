@@ -11,7 +11,6 @@ import com.spring.mongo.api.resource.request.ScreenMasterRequest;
 import com.spring.mongo.api.resource.response.Response;
 import com.spring.mongo.api.resource.service.ScreenService;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -20,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Slf4j
 @Service
 @AllArgsConstructor
 public class ScreenServiceImpl implements ScreenService {
@@ -144,7 +142,7 @@ public class ScreenServiceImpl implements ScreenService {
     @Override
     public Response saveScreenData(ScreenSavingData screenSavingData) {
         screenSaveDataRepository.save(screenSavingData);
-        return new Response("Data Saved Successfully.", screenSavingData.getScreenId(), HttpStatus.OK);
+        return new Response("Transaction completed successfully.", screenSavingData.getScreenId(), HttpStatus.OK);
     }
 
     @Override

@@ -4,13 +4,11 @@ import com.spring.mongo.api.resource.request.InputMasterRequest;
 import com.spring.mongo.api.resource.response.Response;
 import com.spring.mongo.api.resource.service.InputService;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-@Slf4j
 @RestController
 @AllArgsConstructor
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RequestMapping("/api")
 public class InputController {
 

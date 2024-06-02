@@ -24,7 +24,6 @@ public class JwtHelper {
         return Keys.hmacShaKeyFor(key);
     }
 
-
     private <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = getAllClaimsFromToken(token);
         return claimsResolver.apply(claims);
@@ -34,7 +33,6 @@ public class JwtHelper {
         return Jwts.parserBuilder().setSigningKey(getSigninKey()).build().parseClaimsJws(token).getBody();
     }
 
-
     public String extractUserName(String token) {
         return getClaimFromToken(token, Claims::getSubject);
     }
@@ -43,7 +41,6 @@ public class JwtHelper {
         final String username = extractUserName(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
-
 
     public boolean isTokenExpired(String token) {
         return getClaimFromToken(token, Claims::getExpiration).before(new Date());

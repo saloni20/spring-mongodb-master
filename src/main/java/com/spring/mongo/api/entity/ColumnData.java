@@ -9,8 +9,8 @@ public class ColumnData {
     private String id;
     private String label;
     private String placeholder;
-    private int maxlength;
-    private int minlength;
+    private int maxLength;
+    private int minLength;
     private boolean required;
     private boolean disabled;
     private boolean readonly;

@@ -2,12 +2,10 @@ package com.spring.mongo.api.resource.config;
 
 import com.spring.mongo.api.resource.service.CustomUserDetailService;
 import com.spring.mongo.api.resource.serviceImpl.CustomAuthenticationProvider;
-import com.spring.mongo.api.resource.serviceImpl.JwtAuthenticationEntryPoint;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -22,7 +20,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CustomUserDetailService customUserDetailService;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
-    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
     private CustomAuthenticationProvider customAuthenticationProvider;
 
@@ -30,16 +27,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void setCustomAuthenticationProvider(CustomAuthenticationProvider customAuthenticationProvider) {
         this.customAuthenticationProvider = customAuthenticationProvider;
     }
+
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(customAuthenticationProvider).userDetailsService(this.customUserDetailService).passwordEncoder(passwordEncoder());
     }
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Set session creation policy to stateless
-                .and().authorizeRequests().antMatchers("/admin/**").permitAll().antMatchers("/api/**").hasRole("ADMIN").anyRequest().authenticated().and().cors().disable().csrf().disable().exceptionHandling().authenticationEntryPoint(this.jwtAuthenticationEntryPoint);
+                .and().authorizeRequests().antMatchers("/admin/**").permitAll().antMatchers("/api/**").hasRole("ADMIN").anyRequest().authenticated().and().csrf().disable().cors();
         http.addFilterBefore(this.jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
     }
 

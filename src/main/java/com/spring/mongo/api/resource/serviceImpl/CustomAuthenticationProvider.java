@@ -28,10 +28,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = authentication.getName();
         String password = authentication.getCredentials().toString();
-
-
         Optional<UserMaster> user = userMasterRepository.findByEmail(username);
-
         if (user.isEmpty()) {
             throw new UsernameNotFoundException("User not found.");
         }
@@ -47,4 +44,3 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         return authentication.equals(UsernamePasswordAuthenticationToken.class);
     }
 }
-

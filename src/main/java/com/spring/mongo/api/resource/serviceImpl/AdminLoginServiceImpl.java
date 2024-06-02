@@ -10,8 +10,6 @@ import com.spring.mongo.api.resource.dto.LoginResponseDto;
 import com.spring.mongo.api.resource.response.Response;
 import com.spring.mongo.api.resource.service.AdminLoginService;
 import com.spring.mongo.api.resource.service.CustomUserDetailService;
-import com.spring.mongo.api.resource.serviceImpl.CustomAuthenticationProvider;
-import com.spring.mongo.api.resource.serviceImpl.JwtHelper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -30,7 +28,7 @@ public class AdminLoginServiceImpl implements AdminLoginService {
     private final PasswordEncoder passwordEncoder;
     private final JwtHelper jwtService;
     private final CustomUserDetailService customUserDetailService;
-   private final CustomAuthenticationProvider customAuthenticationProvider;
+    private final CustomAuthenticationProvider customAuthenticationProvider;
     private final UserMasterRepository userMasterRepository;
 
     @Override
@@ -41,8 +39,8 @@ public class AdminLoginServiceImpl implements AdminLoginService {
         String jwt = jwtService.genrateJwtToken(user);
         LoginResponseDto loginResponseDto = new LoginResponseDto();
         loginResponseDto.setUsername(user.getUsername());
-        loginResponseDto.setOrgId(user.getUserMasterPk().getOrganizationId());
-        loginResponseDto.setUserId(user.getUserMasterPk().getUserId());
+        loginResponseDto.setOrgId(user.getUserMasterPK().getOrganizationId());
+        loginResponseDto.setUserId(user.getUserMasterPK().getUserId());
         loginResponseDto.setToken(jwt);
         log.info("Response : {}", loginResponseDto);
         return new Response("Transaction completed successfully.", loginResponseDto, HttpStatus.OK);
@@ -56,8 +54,8 @@ public class AdminLoginServiceImpl implements AdminLoginService {
         user.setLastname(adminRegisterDto.getLastname());
         user.setPassword(passwordEncoder.encode(adminRegisterDto.getPassword()));
         user.setRole(RoleMaster.ROLE_ADMIN);
-        UserMasterPK userMasterPk = new UserMasterPK();
-        user.setUserMasterPk(userMasterPk);
+        UserMasterPK userMasterPK = new UserMasterPK();
+        user.setUserMasterPK(userMasterPK);
         Optional<UserMaster> userMaster = userMasterRepository.findByEmail(adminRegisterDto.getEmail().toLowerCase());
         if (userMaster.isPresent()) {
             return new Response("User already available with given email address.", HttpStatus.BAD_REQUEST);

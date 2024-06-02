@@ -4,14 +4,12 @@ import com.spring.mongo.api.resource.request.FieldRequest;
 import com.spring.mongo.api.resource.response.Response;
 import com.spring.mongo.api.resource.service.FieldService;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-@Slf4j
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api")
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class FieldController {
 
     private final FieldService fieldService;
