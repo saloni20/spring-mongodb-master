@@ -8,4 +8,6 @@ import lombok.Setter;
 public class LoginResponseDto {
     private String token;
     private String username;
+    private Integer OrgId;
+    private Integer userId;
 }
