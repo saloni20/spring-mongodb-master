@@ -1,11 +1,11 @@
 package com.spring.mongo.api.resource.config;
 
 import com.spring.mongo.api.resource.service.CustomUserDetailService;
-import com.spring.mongo.api.resource.serviceImpl.JwtAuthenticationEntryPoint;
+import com.spring.mongo.api.resource.serviceImpl.CustomAuthenticationProvider;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -20,17 +20,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CustomUserDetailService customUserDetailService;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
-    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+
+    private CustomAuthenticationProvider customAuthenticationProvider;
+
+    @Autowired
+    public void setCustomAuthenticationProvider(CustomAuthenticationProvider customAuthenticationProvider) {
+        this.customAuthenticationProvider = customAuthenticationProvider;
+    }
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(this.customUserDetailService).passwordEncoder(passwordEncoder());
-    }
-
-    @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
+        auth.authenticationProvider(customAuthenticationProvider).userDetailsService(this.customUserDetailService).passwordEncoder(passwordEncoder());
     }
 
     @Override

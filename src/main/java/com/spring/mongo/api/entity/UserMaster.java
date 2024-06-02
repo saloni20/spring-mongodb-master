@@ -15,7 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 public class UserMaster implements UserDetails {
-    private UserMasterPK userMasterPk;
+    private UserMasterPK userMasterPK;
     private String firstname;
     private String lastname;
     private String email;
