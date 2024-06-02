@@ -31,7 +31,8 @@ public class AdminLoginController {
     @PostMapping("/register")
     public Response registerUser(@Valid @RequestBody AdminRegisterDto adminRegisterDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            List<String> errors = bindingResult.getAllErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.toList());
+            List<String> errors = bindingResult.getAllErrors().stream().map(ObjectError::getDefaultMessage)
+                    .collect(Collectors.toList());
             return new Response(errors.toString(), HttpStatus.BAD_REQUEST);
         }
 
