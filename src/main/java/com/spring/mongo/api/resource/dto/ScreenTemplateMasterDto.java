@@ -1,18 +1,18 @@
-package com.spring.mongo.api.entity;
+package com.spring.mongo.api.resource.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Setter
-@Document(collection = "ScreenMaster")
-public class ScreenMaster {
-    @Id
-    private Integer id;
+@AllArgsConstructor
+@NoArgsConstructor
+public class ScreenTemplateMasterDto {
+    private Integer OrgId;
     private String screenName;
-    private Long sequence;
+    private Integer sequence;
     private String thumbnail;
     private String isMandatory;
     private String isDisabled;
