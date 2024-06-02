@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/admin")
-@CrossOrigin()
+@CrossOrigin(origins = "*")
 @Log4j2
 public class AdminLoginController {
 

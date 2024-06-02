@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api")
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class FieldController {
 
     private final FieldService fieldService;
