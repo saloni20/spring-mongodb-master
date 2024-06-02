@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api")
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class ScreenController {
 
     private final ScreenService screenService;

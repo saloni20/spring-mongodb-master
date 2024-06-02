@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/admin")
-@CrossOrigin()
+@CrossOrigin(origins = "*")
 @Log4j2
 public class AdminLoginController {
 
