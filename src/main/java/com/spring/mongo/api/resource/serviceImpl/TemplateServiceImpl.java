@@ -53,6 +53,7 @@ public class TemplateServiceImpl implements TemplateService {
                 screenTemplateMaster.setIsDisabled(screenTemplateMasterDto.getIsDisabled());
                 screenTemplateMaster.setScreenField(screenTemplateMasterDto.getScreenField());
                 screenTemplateMaster.setTemplateId(new ObjectId(screenTemplateMasterDto.getTemplateId()));
+                screenTemplateMaster.setOrgId(screenTemplateMasterDto.getOrgId());
                 if(savingTemplateDetail(screenTemplateMasterDto))
                     screenTemplateMaster = screenTemplateMasterRepository.save(screenTemplateMaster);
                 else
@@ -86,7 +87,7 @@ public class TemplateServiceImpl implements TemplateService {
     public Response findScreenByOrgId(Integer orgId) {
         List<ScreenTemplateMaster> screenTemplateMasterList = screenTemplateMasterRepository.findByOrgId(orgId);
         List<ScreenTemplateMasterDto> screenTemplateMasterDtoList = new ArrayList<>();
-        if(!CollectionUtils.isEmpty(screenTemplateMasterDtoList)) {
+        if(!CollectionUtils.isEmpty(screenTemplateMasterList)) {
             for(ScreenTemplateMaster s:screenTemplateMasterList) {
                 ScreenTemplateMasterDto screenTemplateMasterDto= new ScreenTemplateMasterDto();
                 screenTemplateMasterDto.setTemplateId(s.getTemplateId().toHexString());
@@ -97,6 +98,8 @@ public class TemplateServiceImpl implements TemplateService {
                 screenTemplateMasterDto.setIsMandatory(s.getIsMandatory());
                 screenTemplateMasterDto.setThumbnail(s.getThumbnail());
                 screenTemplateMasterDto.setPreScreens(s.getPreScreens());
+                screenTemplateMasterDto.setOrgId(s.getOrgId());
+                screenTemplateMasterDto.setSequence(s.getSequence());
                 screenTemplateMasterDtoList.add(screenTemplateMasterDto);
             }
         }
@@ -117,6 +120,7 @@ public class TemplateServiceImpl implements TemplateService {
             screenTemplateMaster.setIsMandatory(screenTemplateMasterDto.getIsMandatory());
             screenTemplateMaster.setIsDisabled(screenTemplateMasterDto.getIsDisabled());
             screenTemplateMaster.setScreenField(screenTemplateMasterDto.getScreenField());
+            screenTemplateMaster.setOrgId(screenTemplateMasterDto.getOrgId());
             if(savingTemplateDetail(screenTemplateMasterDto))
                 screenTemplateMaster = screenTemplateMasterRepository.save(screenTemplateMaster);
             else

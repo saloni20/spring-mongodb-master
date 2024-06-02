@@ -14,7 +14,7 @@ public class ScreenTemplateMaster {
     private ObjectId id;
 
     @Field("orgId")
-    private String orgId;
+    private Integer orgId;
 
     @Field("screenName")
     private String screenName;

@@ -25,16 +25,15 @@ public class TemplateScreenController {
         return templateService.saveScreenMasterTemplateInformation(templateScreenRequest);
     }
 
-    @GetMapping("/get/{id}")
-    public Response findScreenByOrgId(@RequestParam  Integer orgId)
+    @GetMapping("/get/{orgId}")
+    public Response findScreenByOrgId(@PathVariable Integer orgId)
     {
         log.info("request initiated for user with orgId {}", orgId);
         return templateService.findScreenByOrgId(orgId);
     }
 
     @GetMapping("/findAll")
-    public Response findAllTemplateMaster()
-    {
+    public Response findAllTemplateMaster() {
         return  templateService.findAllTemplateMaster();
     }
 
