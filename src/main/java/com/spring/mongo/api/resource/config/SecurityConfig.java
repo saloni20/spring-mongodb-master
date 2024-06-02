@@ -20,7 +20,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CustomUserDetailService customUserDetailService;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
-
     private CustomAuthenticationProvider customAuthenticationProvider;
 
     @Autowired
