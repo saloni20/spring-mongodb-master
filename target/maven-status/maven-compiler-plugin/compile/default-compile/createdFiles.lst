@@ -21,6 +21,7 @@ com\spring\mongo\api\repository\TemplateDetailRepository.class
 com\spring\mongo\api\entity\ScreenTemplateMaster.class
 com\spring\mongo\api\resource\request\InputMasterRequest.class
 com\spring\mongo\api\entity\ColumnData.class
+com\spring\mongo\api\resource\dto\TemplateMasterDto.class
 com\spring\mongo\api\resource\service\ScreenService.class
 com\spring\mongo\api\repository\ScreenSaveDataRepository.class
 com\spring\mongo\api\resource\controller\AdminLoginController.class

@@ -83,23 +83,23 @@ public class TemplateServiceImpl implements TemplateService {
     public Response findAllTemplateMaster() {
         List<TemplateMaster> templateMasterList = templateMasterRepository.findAll();
         List<TemplateMasterDto> templateMasterDtoList = new ArrayList<>();
-        for(TemplateMaster t : templateMasterList) {
+        for (TemplateMaster templateMaster : templateMasterList) {
             TemplateMasterDto templateMasterDto = new TemplateMasterDto();
-            templateMasterDto.setTemplateId(String.valueOf(t.getId()));
-            templateMasterDto.setTemplateField(t.getTemplateField());
-            templateMasterDto.setTemplateType(t.getTemplateType());
-            templateMasterDto.setTemplateName(t.getTemplateName());
-            templateMasterDto.setIcon(t.getIcon());
+            templateMasterDto.setTemplateId(String.valueOf(templateMaster.getId()));
+            templateMasterDto.setTemplateField(templateMaster.getTemplateField());
+            templateMasterDto.setTemplateType(templateMaster.getTemplateType());
+            templateMasterDto.setTemplateName(templateMaster.getTemplateName());
+            templateMasterDto.setIcon(templateMaster.getIcon());
             templateMasterDtoList.add(templateMasterDto);
         }
 
-        return new Response("Transaction completed successfully.",templateMasterDtoList, HttpStatus.OK);
+        return new Response("Transaction completed successfully.", templateMasterDtoList, HttpStatus.OK);
     }
 
     @Override
     public Response findScreenByOrgId(Integer orgId) {
         List<ScreenTemplateMaster> screenTemplateMasterList = screenTemplateMasterRepository.findByOrgId(orgId);
-        log.info("Fetching all screens with orgId {}",orgId);
+        log.info("Fetching all screens with orgId {}", orgId);
         List<ScreenTemplateMasterDto> screenTemplateMasterDtoList = new ArrayList<>();
         if (!CollectionUtils.isEmpty(screenTemplateMasterList)) {
             for (ScreenTemplateMaster screenTemplateMaster : screenTemplateMasterList) {
@@ -148,12 +148,12 @@ public class TemplateServiceImpl implements TemplateService {
     }
 
     @Override
-    public Response findAllScreensByTemplateId(String objectId,Integer orgId) {
-        log.info("Fetching all screens with orgId {} and TemplateId {}",objectId);
-        List<ScreenTemplateMaster> screenTemplateMasterList=null;
-        if(orgId!=null)
-            screenTemplateMasterList = screenTemplateMasterRepository.findByOrgIdAndTemplateId(orgId,new ObjectId(objectId));
-            else screenTemplateMasterList = screenTemplateMasterRepository.findByTemplateId(new ObjectId(objectId));
+    public Response findAllScreensByTemplateId(String objectId, Integer orgId) {
+        log.info("Fetching all screens with orgId {} and TemplateId {}", orgId, objectId);
+        List<ScreenTemplateMaster> screenTemplateMasterList;
+        if (orgId != null)
+            screenTemplateMasterList = screenTemplateMasterRepository.findByOrgIdAndTemplateId(orgId, new ObjectId(objectId));
+        else screenTemplateMasterList = screenTemplateMasterRepository.findByTemplateId(new ObjectId(objectId));
         List<ScreenTemplateMasterDto> screenTemplateMasterDtoList = new ArrayList<>();
         if (!CollectionUtils.isEmpty(screenTemplateMasterList)) {
             for (ScreenTemplateMaster screenTemplateMaster : screenTemplateMasterList) {

@@ -33,10 +33,8 @@ public class TemplateScreenController {
     }
 
     @GetMapping("/getScreenByTemplateId/{templateId}")
-    public Response getScreenByTemplateId(@PathVariable String templateId, @RequestParam(required = false) Integer orgId)
-    {
+    public Response getScreenByTemplateId(@PathVariable String templateId, @RequestParam(required = false) Integer orgId) {
         log.info("Request initiated for user with orgId {}", orgId);
         return templateService.findAllScreensByTemplateId(templateId, orgId);
     }
-
 }

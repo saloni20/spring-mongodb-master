@@ -64,7 +64,6 @@ public class AdminLoginServiceImpl implements AdminLoginService {
             userRepository.save(user);
             return new Response("User Registered successfully.", user, HttpStatus.OK);
         }
-
     }
 
     @Override

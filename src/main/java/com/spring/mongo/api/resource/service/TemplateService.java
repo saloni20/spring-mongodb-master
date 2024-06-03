@@ -17,6 +17,5 @@ public interface TemplateService {
 
     Response deleteTemplateScreenById(Integer id);
 
-    Response findAllScreensByTemplateId(String objectId,Integer orgId);
-
+    Response findAllScreensByTemplateId(String objectId, Integer orgId);
 }

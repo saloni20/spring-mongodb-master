@@ -9,7 +9,8 @@ import java.util.List;
 public interface ScreenTemplateMasterRepository extends MongoRepository<ScreenTemplateMaster, ObjectId> {
 
     List<ScreenTemplateMaster> findByOrgId(Integer orgId);
-    List<ScreenTemplateMaster> findByTemplateId(ObjectId objectId);
-    List<ScreenTemplateMaster> findByOrgIdAndTemplateId(Integer orgId, ObjectId objectId);
 
+    List<ScreenTemplateMaster> findByTemplateId(ObjectId objectId);
+
+    List<ScreenTemplateMaster> findByOrgIdAndTemplateId(Integer orgId, ObjectId objectId);
 }

@@ -729,8 +729,6 @@ w
 Gsrc/main/java/com/spring/mongo/api/repository/UserMasterRepository.java,8\f\8fbd77a087551a2ab6ded0398c93c86f34ef013c
 z
 Jsrc/main/java/com/spring/mongo/api/resource/service/AdminLoginService.java,8\d\8d3db4b786d85a0f005ca397e95206d3c9f8d370
-~
-Nsrc/main/java/com/spring/mongo/api/resource/service/AdminLoginServiceImpl.java,3\d\3d891f54ac05d38908f87a12c07667e3c1c3da6d
 k
 ;src/main/java/com/spring/mongo/api/entity/UserMasterPk.java,a\3\a3af52cfda6ddc34ba04dd55c3133f3f699cc7f7
 k
@@ -1384,8 +1382,6 @@ G.idea/sonarlint/issuestore/e/e/eee33ce9ed340acb9773cb87147c4d025a119789,e\7\e7
 Å
 Q.idea/sonarlint/securityhotspotstore/5/5/55d9c2694bf97bddbbaa86990cfd0ec5c04cbad9,7\c\7cc8a803ee79d143c175f9338c9106889d3cbf71
 Å
-Q.idea/sonarlint/securityhotspotstore/3/d/3d891f54ac05d38908f87a12c07667e3c1c3da6d,9\8\9860c44e8520a6cd83a5536fb639c19e65caeff8
-Å
 Q.idea/sonarlint/securityhotspotstore/5/2/522b0f27e8f86812aac95deca272c8f329e4d6c5,b\7\b78f005ee9cdcc65c6146a5fbbb915214256424c
 Å
 Q.idea/sonarlint/securityhotspotstore/8/d/8d3db4b786d85a0f005ca397e95206d3c9f8d370,9\2\9238a82aa1688e8f314949910bb0183d974cf620
@@ -1655,7 +1651,7 @@ Fsrc/main/java/com/spring/mongo/api/resource/dto/TemplateDetailDto.java,e\7\e7e
 Nsrc/main/java/com/spring/mongo/api/resource/request/TemplateScreenRequest.java,e\4\e4997c3223d747dc0e8607e3c47a98fb8499b854
 x
 Hsrc/main/java/com/spring/mongo/api/resource/service/TemplateService.java,3\1\31a56feb400c21b481812626d5b2577fd830445c
-Å
-Qsrc/main/java/com/spring/mongo/api/resource/service/CustomUserDetailServicec.java,b\1\b19e9378793218a3d916d89addd38324f8a45acc
 Ä
 Psrc/main/java/com/spring/mongo/api/resource/serviceImpl/TemplateServiceImpl.java,6\3\63431c9d8cd290a67b69d77f299170b5f43316f0
+v
+Fsrc/main/java/com/spring/mongo/api/resource/dto/TemplateMasterDto.java,e\a\eaf14181be54620415c62ae67dab7803930e70c7

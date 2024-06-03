@@ -6,6 +6,7 @@ E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\entity\Tem
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\entity\ScreenMaster.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\entity\FieldMaster.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\entity\RoleMaster.java
+E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\dto\TemplateMasterDto.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\dto\TemplateDetailDto.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\entity\TemplateDetail.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\SpringMongodbApplication.java
