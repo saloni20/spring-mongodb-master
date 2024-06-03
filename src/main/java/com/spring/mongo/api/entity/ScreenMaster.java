@@ -19,4 +19,5 @@ public class ScreenMaster {
     private String postScreens;
     private String preScreens;
     private String screenField;
+    private String templateId;
 }
