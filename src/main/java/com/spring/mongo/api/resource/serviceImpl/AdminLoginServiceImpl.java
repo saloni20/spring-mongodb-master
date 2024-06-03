@@ -1,5 +1,6 @@
 package com.spring.mongo.api.resource.serviceImpl;
 
+import com.spring.mongo.api.entity.DatabaseSequence;
 import com.spring.mongo.api.entity.RoleMaster;
 import com.spring.mongo.api.entity.UserMaster;
 import com.spring.mongo.api.entity.UserMasterPK;
@@ -10,6 +11,8 @@ import com.spring.mongo.api.resource.dto.LoginResponseDto;
 import com.spring.mongo.api.resource.response.Response;
 import com.spring.mongo.api.resource.service.AdminLoginService;
 import com.spring.mongo.api.resource.service.CustomUserDetailService;
+import com.spring.mongo.api.resource.serviceImpl.CustomAuthenticationProvider;
+import com.spring.mongo.api.resource.serviceImpl.JwtHelper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -28,8 +31,9 @@ public class AdminLoginServiceImpl implements AdminLoginService {
     private final PasswordEncoder passwordEncoder;
     private final JwtHelper jwtService;
     private final CustomUserDetailService customUserDetailService;
-    private final CustomAuthenticationProvider customAuthenticationProvider;
+   private final CustomAuthenticationProvider customAuthenticationProvider;
     private final UserMasterRepository userMasterRepository;
+    private final SequenceGeneratorService sequenceGeneratorService;
 
     @Override
     public Response login(LoginRequestDto loginRequestDto) {
@@ -54,8 +58,10 @@ public class AdminLoginServiceImpl implements AdminLoginService {
         user.setLastname(adminRegisterDto.getLastname());
         user.setPassword(passwordEncoder.encode(adminRegisterDto.getPassword()));
         user.setRole(RoleMaster.ROLE_ADMIN);
-        UserMasterPK userMasterPK = new UserMasterPK();
-        user.setUserMasterPK(userMasterPK);
+        UserMasterPK userMasterPk = new UserMasterPK();
+        userMasterPk.setOrganizationId(1);
+        userMasterPk.setUserId(sequenceGeneratorService.generateSequence("user_sequence"));
+        user.setUserMasterPK(userMasterPk);
         Optional<UserMaster> userMaster = userMasterRepository.findByEmail(adminRegisterDto.getEmail().toLowerCase());
         if (userMaster.isPresent()) {
             return new Response("User already available with given email address.", HttpStatus.BAD_REQUEST);

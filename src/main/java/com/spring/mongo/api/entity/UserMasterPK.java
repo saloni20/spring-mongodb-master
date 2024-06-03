@@ -11,6 +11,7 @@ import java.io.Serializable;
 @Document(collection = "userMaster_pk")
 public class UserMasterPK implements Serializable {
 
+    public static final String SEQUENCE_NAME = "user_sequence";
     private Integer organizationId;
-    private Integer userId;
+    private Long userId;
 }

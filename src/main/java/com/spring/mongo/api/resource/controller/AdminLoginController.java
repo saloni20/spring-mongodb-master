@@ -5,7 +5,9 @@ import com.spring.mongo.api.resource.dto.AdminRegisterDto;
 import com.spring.mongo.api.resource.dto.LoginRequestDto;
 import com.spring.mongo.api.resource.response.Response;
 import com.spring.mongo.api.resource.service.AdminLoginService;
+import com.spring.mongo.api.resource.serviceImpl.PasswordConstraintValidator;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
@@ -19,19 +21,29 @@ import java.util.stream.Collectors;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/admin")
-@CrossOrigin(origins = "*")
+@CrossOrigin()
+@Log4j2
 public class AdminLoginController {
 
     private final AdminLoginService adminLoginService;
+    private final PasswordConstraintValidator passwordConstraintValidator;
 
     @PostMapping("/register")
     public Response registerUser(@Valid @RequestBody AdminRegisterDto adminRegisterDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            List<String> errors = bindingResult.getAllErrors().stream().map(ObjectError::getDefaultMessage).collect(Collectors.toList());
+            List<String> errors = bindingResult.getAllErrors().stream().map(ObjectError::getDefaultMessage)
+                    .collect(Collectors.toList());
             return new Response(errors.toString(), HttpStatus.BAD_REQUEST);
         }
+
+        boolean isPasswordValid = passwordConstraintValidator.checkStrongPassword(adminRegisterDto);
+        if (!isPasswordValid) {
+            return new Response("Your Password Should not need to contain your firstname Or lastname", HttpStatus.BAD_REQUEST);
+        }
+
         return adminLoginService.registerUser(adminRegisterDto);
     }
+
 
     @PostMapping("/login")
     public Response login(@RequestBody LoginRequestDto loginRequestDto) {
@@ -39,7 +51,7 @@ public class AdminLoginController {
     }
 
     @GetMapping("/getAdmin")
-    public String getAdmin() {
+    public String getadmin() {
         UserMaster userMaster = (UserMaster) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return "Hi " + userMaster.getUsername();
     }
