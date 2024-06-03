@@ -7,6 +7,7 @@ import com.spring.mongo.api.repository.ScreenTemplateMasterRepository;
 import com.spring.mongo.api.repository.TemplateDetailRepository;
 import com.spring.mongo.api.repository.TemplateMasterRepository;
 import com.spring.mongo.api.resource.dto.ScreenTemplateMasterDto;
+import com.spring.mongo.api.resource.dto.TemplateMasterDto;
 import com.spring.mongo.api.resource.request.TemplateScreenRequest;
 import com.spring.mongo.api.resource.response.Response;
 import com.spring.mongo.api.resource.service.TemplateService;
@@ -80,12 +81,25 @@ public class TemplateServiceImpl implements TemplateService {
 
     @Override
     public Response findAllTemplateMaster() {
-        return new Response("Transaction completed successfully.", templateMasterRepository.findAll(), HttpStatus.OK);
+        List<TemplateMaster> templateMasterList = templateMasterRepository.findAll();
+        List<TemplateMasterDto> templateMasterDtoList = new ArrayList<>();
+        for(TemplateMaster t : templateMasterList) {
+            TemplateMasterDto templateMasterDto = new TemplateMasterDto();
+            templateMasterDto.setTemplateId(String.valueOf(t.getId()));
+            templateMasterDto.setTemplateField(t.getTemplateField());
+            templateMasterDto.setTemplateType(t.getTemplateType());
+            templateMasterDto.setTemplateName(t.getTemplateName());
+            templateMasterDto.setIcon(t.getIcon());
+            templateMasterDtoList.add(templateMasterDto);
+        }
+
+        return new Response("Transaction completed successfully.",templateMasterDtoList, HttpStatus.OK);
     }
 
     @Override
     public Response findScreenByOrgId(Integer orgId) {
         List<ScreenTemplateMaster> screenTemplateMasterList = screenTemplateMasterRepository.findByOrgId(orgId);
+        log.info("Fetching all screens with orgId {}",orgId);
         List<ScreenTemplateMasterDto> screenTemplateMasterDtoList = new ArrayList<>();
         if (!CollectionUtils.isEmpty(screenTemplateMasterList)) {
             for (ScreenTemplateMaster screenTemplateMaster : screenTemplateMasterList) {
@@ -131,5 +145,32 @@ public class TemplateServiceImpl implements TemplateService {
     @Override
     public Response deleteTemplateScreenById(Integer id) {
         return null;
+    }
+
+    @Override
+    public Response findAllScreensByTemplateId(String objectId,Integer orgId) {
+        log.info("Fetching all screens with orgId {} and TemplateId {}",objectId);
+        List<ScreenTemplateMaster> screenTemplateMasterList=null;
+        if(orgId!=null)
+            screenTemplateMasterList = screenTemplateMasterRepository.findByOrgIdAndTemplateId(orgId,new ObjectId(objectId));
+            else screenTemplateMasterList = screenTemplateMasterRepository.findByTemplateId(new ObjectId(objectId));
+        List<ScreenTemplateMasterDto> screenTemplateMasterDtoList = new ArrayList<>();
+        if (!CollectionUtils.isEmpty(screenTemplateMasterList)) {
+            for (ScreenTemplateMaster screenTemplateMaster : screenTemplateMasterList) {
+                ScreenTemplateMasterDto screenTemplateMasterDto = new ScreenTemplateMasterDto();
+                screenTemplateMasterDto.setTemplateId(screenTemplateMaster.getTemplateId().toHexString());
+                screenTemplateMasterDto.setScreenField(screenTemplateMaster.getScreenField());
+                screenTemplateMasterDto.setScreenName(screenTemplateMaster.getScreenName());
+                screenTemplateMasterDto.setPostScreens(screenTemplateMaster.getPostScreens());
+                screenTemplateMasterDto.setIsDisabled(screenTemplateMaster.getIsDisabled());
+                screenTemplateMasterDto.setIsMandatory(screenTemplateMaster.getIsMandatory());
+                screenTemplateMasterDto.setThumbnail(screenTemplateMaster.getThumbnail());
+                screenTemplateMasterDto.setPreScreens(screenTemplateMaster.getPreScreens());
+                screenTemplateMasterDto.setOrgId(screenTemplateMaster.getOrgId());
+                screenTemplateMasterDto.setSequence(screenTemplateMaster.getSequence());
+                screenTemplateMasterDtoList.add(screenTemplateMasterDto);
+            }
+        }
+        return new Response("Transaction completed successfully.", screenTemplateMasterDtoList, HttpStatus.OK);
     }
 }
