@@ -3,9 +3,12 @@ package com.spring.mongo.api.resource.serviceImpl;
 import com.spring.mongo.api.entity.FieldMaster;
 import com.spring.mongo.api.entity.ScreenMaster;
 import com.spring.mongo.api.entity.ScreenSavingData;
+import com.spring.mongo.api.entity.ScreenTemplateDetails;
 import com.spring.mongo.api.repository.FieldMasterRepository;
 import com.spring.mongo.api.repository.ScreenMasterRepository;
 import com.spring.mongo.api.repository.ScreenSaveDataRepository;
+import com.spring.mongo.api.repository.ScreenTemplateDetailRepository;
+import com.spring.mongo.api.resource.dto.ScreenTemplateDetailsDto;
 import com.spring.mongo.api.resource.request.FieldRequest;
 import com.spring.mongo.api.resource.request.ScreenMasterRequest;
 import com.spring.mongo.api.resource.response.Response;
@@ -26,6 +29,7 @@ public class ScreenServiceImpl implements ScreenService {
     private final ScreenMasterRepository screenMasterRepository;
     private final FieldMasterRepository fieldMasterRepository;
     private final ScreenSaveDataRepository screenSaveDataRepository;
+    private final ScreenTemplateDetailRepository screenTemplateDetailRepository;
 
     @Override
     public Response addScreenMaster(ScreenMasterRequest screenMasterRequest) {
@@ -48,36 +52,36 @@ public class ScreenServiceImpl implements ScreenService {
     }
 
     @Override
-    public Response findAllScreenMaster() {
-        List<ScreenMasterRequest> screenMasterRequestList = new ArrayList<>();
-        List<ScreenMaster> screenMasterList = screenMasterRepository.findAll();
-        for (ScreenMaster screenMaster : screenMasterList) {
-            ScreenMasterRequest screenMasterRequest = getScreenMasterRequest(screenMaster);
-            List<FieldRequest> fieldRequestList = new ArrayList<>();
-            List<FieldMaster> fieldMasterList = fieldMasterRepository.findAllByScreenId(Long.valueOf(screenMaster.getId()));
-            for (FieldMaster fieldMaster : fieldMasterList) {
-                FieldRequest fieldRequest = new FieldRequest();
-                BeanUtils.copyProperties(fieldMaster, fieldRequest);
-                fieldRequestList.add(fieldRequest);
-            }
-            screenMasterRequest.setFieldsMapList(fieldRequestList);
-            screenMasterRequestList.add(screenMasterRequest);
+    public Response findAllScreenMaster(String templateId) {
+        List<ScreenTemplateDetailsDto> screenTemplateDetailsDtoList = new ArrayList<>();
+        List<ScreenTemplateDetails> screenTemplateDetailsList = screenTemplateDetailRepository.findByTemplateId(templateId);
+        for (ScreenTemplateDetails screenTemplateDetails : screenTemplateDetailsList) {
+            ScreenTemplateDetailsDto screenTemplateDetailsDto = getScreenTemplateDetail(screenTemplateDetails);
+//            List<FieldRequest> fieldRequestList = new ArrayList<>();
+//            List<FieldMaster> fieldMasterList = fieldMasterRepository.findAllByScreenId(Long.valueOf(screenTemplateDetails.getId()));
+//            for (FieldMaster fieldMaster : fieldMasterList) {
+//                FieldRequest fieldRequest = new FieldRequest();
+//                BeanUtils.copyProperties(fieldMaster, fieldRequest);
+//                fieldRequestList.add(fieldRequest);
+//            }
+            screenTemplateDetailsDtoList.add(screenTemplateDetailsDto);
         }
-        return new Response("Screen master list found.", screenMasterRequestList, HttpStatus.OK);
+        return new Response("Screen master list found.", screenTemplateDetailsDtoList, HttpStatus.OK);
     }
 
-    private static ScreenMasterRequest getScreenMasterRequest(ScreenMaster screenMaster) {
-        ScreenMasterRequest screenMasterRequest = new ScreenMasterRequest();
-        screenMasterRequest.setId(screenMaster.getId());
-        screenMasterRequest.setSequence(screenMaster.getSequence());
-        screenMasterRequest.setPostScreens(screenMaster.getPostScreens());
-        screenMasterRequest.setPreScreens(screenMaster.getPreScreens());
-        screenMasterRequest.setScreenName(screenMaster.getScreenName());
-        screenMasterRequest.setThumbnail(screenMaster.getThumbnail());
-        screenMasterRequest.setIsMandatory(screenMaster.getIsMandatory());
-        screenMasterRequest.setIsDisabled(screenMaster.getIsDisabled());
-        screenMasterRequest.setScreenField(screenMaster.getScreenField());
-        return screenMasterRequest;
+    private static ScreenTemplateDetailsDto getScreenTemplateDetail(ScreenTemplateDetails screenTemplateDetails) {
+        ScreenTemplateDetailsDto screenTemplateDetailsDto = new ScreenTemplateDetailsDto();
+        screenTemplateDetailsDto.setId(screenTemplateDetails.getId().toHexString());
+        screenTemplateDetailsDto.setSequence(screenTemplateDetails.getSequence());
+        screenTemplateDetailsDto.setPostScreens(screenTemplateDetails.getPostScreens());
+        screenTemplateDetailsDto.setPreScreens(screenTemplateDetails.getPreScreens());
+        screenTemplateDetailsDto.setScreenName(screenTemplateDetails.getScreenName());
+        screenTemplateDetailsDto.setThumbnail(screenTemplateDetails.getThumbnail());
+        screenTemplateDetailsDto.setIsMandatory(screenTemplateDetails.getIsMandatory());
+        screenTemplateDetailsDto.setIsDisabled(screenTemplateDetails.getIsDisabled());
+        screenTemplateDetailsDto.setScreenField(screenTemplateDetails.getScreenField());
+        screenTemplateDetailsDto.setFieldsMap(screenTemplateDetails.getFieldsMap());
+        return screenTemplateDetailsDto;
     }
 
     @Override

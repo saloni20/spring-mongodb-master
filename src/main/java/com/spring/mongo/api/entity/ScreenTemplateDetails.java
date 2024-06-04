@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.List;
 
 @Getter
 @Setter
@@ -44,4 +45,7 @@ public class ScreenTemplateDetails {
 
     @Field("templateId")
     private String templateId;
+
+    @Field("fieldsMap")
+    private List<Object> fieldsMap;
 }

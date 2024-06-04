@@ -20,9 +20,9 @@ public class ScreenController {
         return screenService.addScreenMaster(screenMasterRequest);
     }
 
-    @GetMapping("/findAllScreenMaster")
-    public Response findAllScreenMaster() {
-        return screenService.findAllScreenMaster();
+    @GetMapping("/findAllScreenMaster/{templateId}")
+    public Response findAllScreenMaster(@PathVariable String templateId) {
+        return screenService.findAllScreenMaster(templateId);
     }
 
     @GetMapping("/findScreenById/{id}")

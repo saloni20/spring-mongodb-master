@@ -1,6 +1,6 @@
 package com.spring.mongo.api.resource.controller;
 
-import com.spring.mongo.api.entity.TemplateDetail;
+import com.spring.mongo.api.resource.dto.ScreenTemplateDetailsDto;
 import com.spring.mongo.api.resource.request.TemplateDetailRequest;
 import com.spring.mongo.api.resource.request.TemplateScreenRequest;
 import com.spring.mongo.api.resource.response.Response;
@@ -48,5 +48,16 @@ public class TemplateScreenController {
     @PostMapping("/saveCustomTemplate")
     public Response saveCustomTemplateDetail(@RequestBody TemplateDetailRequest templateDetailRequest) {
         return templateService.saveCustomTemplateDetail(templateDetailRequest);
+    }
+
+    @GetMapping("/getScreenTemplateDetail/{screenId}")
+    public Response getScreenTemplateDetail(@PathVariable String screenId, @RequestParam(required = false) Integer orgId) {
+        log.info("Request initiated for user with screenId {}", screenId);
+        return templateService.getScreenTemplateDetail(screenId, orgId);
+    }
+
+    @PostMapping("/updateScreenTemplateDetail")
+    public Response updateScreenTemplateDetail(@RequestBody ScreenTemplateDetailsDto screenTemplateDetailsDto) {
+        return templateService.updateScreenTemplateDetail(screenTemplateDetailsDto);
     }
 }

@@ -1,3 +1,5 @@
+com\spring\mongo\api\repository\ScreenTemplateDetailRepository.class
+com\spring\mongo\api\resource\dto\ScreenTemplateDetailsDto.class
 com\spring\mongo\api\resource\service\JwtService.class
 com\spring\mongo\api\repository\UserMasterRepository.class
 com\spring\mongo\api\repository\TemplateMasterRepository.class
@@ -38,8 +40,10 @@ com\spring\mongo\api\entity\TemplateMaster.class
 com\spring\mongo\api\SpringMongodbApplication.class
 com\spring\mongo\api\entity\UserMaster.class
 com\spring\mongo\api\repository\ScreenMasterRepository.class
+com\spring\mongo\api\entity\ScreenTemplateDetails.class
 com\spring\mongo\api\resource\serviceImpl\JwtAuthenticationEntryPoint.class
 com\spring\mongo\api\resource\serviceImpl\AdminLoginServiceImpl.class
+com\spring\mongo\api\resource\request\TemplateDetailRequest.class
 com\spring\mongo\api\resource\serviceImpl\ScreenServiceImpl.class
 com\spring\mongo\api\repository\InputMasterRepository.class
 com\spring\mongo\api\entity\UserMasterPK.class

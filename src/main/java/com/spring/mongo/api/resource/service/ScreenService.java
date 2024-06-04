@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public interface ScreenService {
     Response addScreenMaster(ScreenMasterRequest screenMasterRequest);
 
-    Response findAllScreenMaster();
+    Response findAllScreenMaster(String templateId);
 
     Response findScreenById(Integer id);
 

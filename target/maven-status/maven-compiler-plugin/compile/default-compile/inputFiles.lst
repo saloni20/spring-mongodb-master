@@ -10,6 +10,7 @@ E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\d
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\dto\TemplateDetailDto.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\entity\TemplateDetail.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\SpringMongodbApplication.java
+E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\dto\ScreenTemplateDetailsDto.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\serviceImpl\JwtHelper.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\serviceImpl\PasswordConstraintValidator.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\request\ScreenMasterRequest.java
@@ -36,10 +37,12 @@ E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\s
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\serviceImpl\ScreenServiceImpl.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\service\ValidPassword.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\repository\TemplateMasterRepository.java
+E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\request\TemplateDetailRequest.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\controller\TemplateScreenController.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\entity\UserMaster.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\controller\InputController.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\entity\InputMaster.java
+E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\repository\ScreenTemplateDetailRepository.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\config\JwtAuthenticationFilter.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\service\InputService.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\serviceImpl\InputServiceImpl.java
@@ -47,6 +50,7 @@ E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\repository
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\dto\AdminRegisterDto.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\entity\RowData.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\serviceImpl\CustomAuthenticationProvider.java
+E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\entity\ScreenTemplateDetails.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\service\JwtService.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\config\SecurityConfig.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\service\ScreenService.java

@@ -1655,3 +1655,13 @@ Hsrc/main/java/com/spring/mongo/api/resource/service/TemplateService.java,3\1\3
 Psrc/main/java/com/spring/mongo/api/resource/serviceImpl/TemplateServiceImpl.java,6\3\63431c9d8cd290a67b69d77f299170b5f43316f0
 v
 Fsrc/main/java/com/spring/mongo/api/resource/dto/TemplateMasterDto.java,e\a\eaf14181be54620415c62ae67dab7803930e70c7
+s
+Csrc/main/java/com/spring/mongo/api/entity/ScreenTemplateDetail.java,f\b\fbb4c0d200f33fa99cd6a36ca2c084e4cc02217e
+t
+Dsrc/main/java/com/spring/mongo/api/entity/ScreenTemplateDetails.java,1\a\1ae911378a746bd4eb42b0b933537ad1b6156104
+Å
+Qsrc/main/java/com/spring/mongo/api/repository/ScreenTemplateDetailRepository.java,9\c\9cb59218e0cde19429928a307180ed6143c4347c
+}
+Msrc/main/java/com/spring/mongo/api/resource/dto/ScreenTemplateDetailsDto.java,7\8\787ea67285eff5d38095a47501adba47e66ca411
+~
+Nsrc/main/java/com/spring/mongo/api/resource/request/TemplateDetailRequest.java,1\4\14bc71fcb89449bc5c9f93285fc966ca26cff3d2
