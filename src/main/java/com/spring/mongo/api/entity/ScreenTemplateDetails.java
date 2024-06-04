@@ -7,10 +7,11 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+
 @Getter
 @Setter
-@Document(collection = "ScreenTemplateMaster")
-public class ScreenTemplateMaster {
+@Document(collection = "ScreenTemplateDetail")
+public class ScreenTemplateDetails {
     @Id
     private ObjectId id;
 

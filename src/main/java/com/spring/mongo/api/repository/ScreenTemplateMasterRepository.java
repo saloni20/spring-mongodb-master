@@ -10,7 +10,7 @@ public interface ScreenTemplateMasterRepository extends MongoRepository<ScreenTe
 
     List<ScreenTemplateMaster> findByOrgId(Integer orgId);
 
-    List<ScreenTemplateMaster> findByTemplateId(ObjectId objectId);
+    List<ScreenTemplateMaster> findByTemplateId(String objectId);
 
     List<ScreenTemplateMaster> findByOrgIdAndTemplateId(Integer orgId, ObjectId objectId);
 }

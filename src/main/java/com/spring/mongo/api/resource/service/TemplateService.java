@@ -1,6 +1,7 @@
 package com.spring.mongo.api.resource.service;
 
 import com.spring.mongo.api.entity.ScreenTemplateMaster;
+import com.spring.mongo.api.resource.request.TemplateDetailRequest;
 import com.spring.mongo.api.resource.request.TemplateScreenRequest;
 import com.spring.mongo.api.resource.response.Response;
 
@@ -18,4 +19,8 @@ public interface TemplateService {
     Response deleteTemplateScreenById(Integer id);
 
     Response findAllScreensByTemplateId(String objectId, Integer orgId);
+
+    Response findAllTemplateDetailForOrg(Integer orgId);
+
+    Response saveCustomTemplateDetail(TemplateDetailRequest orgId);
 }

@@ -1,5 +1,7 @@
 package com.spring.mongo.api.resource.controller;
 
+import com.spring.mongo.api.entity.TemplateDetail;
+import com.spring.mongo.api.resource.request.TemplateDetailRequest;
 import com.spring.mongo.api.resource.request.TemplateScreenRequest;
 import com.spring.mongo.api.resource.response.Response;
 import com.spring.mongo.api.resource.service.TemplateService;
@@ -36,5 +38,15 @@ public class TemplateScreenController {
     public Response getScreenByTemplateId(@PathVariable String templateId, @RequestParam(required = false) Integer orgId) {
         log.info("Request initiated for user with orgId {}", orgId);
         return templateService.findAllScreensByTemplateId(templateId, orgId);
+    }
+
+    @GetMapping("/getAllTemplateForOrg/{orgId}")
+    public Response getAllTemplateForOrg(@PathVariable Integer orgId) {
+        return templateService.findAllTemplateDetailForOrg(orgId);
+    }
+
+    @PostMapping("/saveCustomTemplate")
+    public Response saveCustomTemplateDetail(@RequestBody TemplateDetailRequest templateDetailRequest) {
+        return templateService.saveCustomTemplateDetail(templateDetailRequest);
     }
 }

@@ -1,13 +1,16 @@
 package com.spring.mongo.api.resource.serviceImpl;
 
+import com.spring.mongo.api.entity.ScreenTemplateDetails;
 import com.spring.mongo.api.entity.ScreenTemplateMaster;
 import com.spring.mongo.api.entity.TemplateDetail;
 import com.spring.mongo.api.entity.TemplateMaster;
+import com.spring.mongo.api.repository.ScreenTemplateDetailRepository;
 import com.spring.mongo.api.repository.ScreenTemplateMasterRepository;
 import com.spring.mongo.api.repository.TemplateDetailRepository;
 import com.spring.mongo.api.repository.TemplateMasterRepository;
 import com.spring.mongo.api.resource.dto.ScreenTemplateMasterDto;
 import com.spring.mongo.api.resource.dto.TemplateMasterDto;
+import com.spring.mongo.api.resource.request.TemplateDetailRequest;
 import com.spring.mongo.api.resource.request.TemplateScreenRequest;
 import com.spring.mongo.api.resource.response.Response;
 import com.spring.mongo.api.resource.service.TemplateService;
@@ -30,6 +33,7 @@ public class TemplateServiceImpl implements TemplateService {
     private final ScreenTemplateMasterRepository screenTemplateMasterRepository;
     private final TemplateDetailRepository templateDetailRepository;
     private final TemplateMasterRepository templateMasterRepository;
+    private final ScreenTemplateDetailRepository screenTemplateDetailRepository;
 
     @Override
     public Response saveScreenMasterTemplateInformation(TemplateScreenRequest templateScreenRequest) {
@@ -59,7 +63,7 @@ public class TemplateServiceImpl implements TemplateService {
         screenTemplateMaster.setIsMandatory(screenTemplateMasterDto.getIsMandatory());
         screenTemplateMaster.setIsDisabled(screenTemplateMasterDto.getIsDisabled());
         screenTemplateMaster.setScreenField(screenTemplateMasterDto.getScreenField());
-        screenTemplateMaster.setTemplateId(new ObjectId(screenTemplateMasterDto.getTemplateId()));
+        screenTemplateMaster.setTemplateId(screenTemplateMasterDto.getTemplateId());
         screenTemplateMaster.setOrgId(screenTemplateMasterDto.getOrgId());
         return screenTemplateMaster;
     }
@@ -104,7 +108,7 @@ public class TemplateServiceImpl implements TemplateService {
         if (!CollectionUtils.isEmpty(screenTemplateMasterList)) {
             for (ScreenTemplateMaster screenTemplateMaster : screenTemplateMasterList) {
                 ScreenTemplateMasterDto screenTemplateMasterDto = new ScreenTemplateMasterDto();
-                screenTemplateMasterDto.setTemplateId(screenTemplateMaster.getTemplateId().toHexString());
+                screenTemplateMasterDto.setTemplateId(screenTemplateMaster.getTemplateId());
                 screenTemplateMasterDto.setScreenField(screenTemplateMaster.getScreenField());
                 screenTemplateMasterDto.setScreenName(screenTemplateMaster.getScreenName());
                 screenTemplateMasterDto.setPostScreens(screenTemplateMaster.getPostScreens());
@@ -153,12 +157,12 @@ public class TemplateServiceImpl implements TemplateService {
         List<ScreenTemplateMaster> screenTemplateMasterList;
         if (orgId != null)
             screenTemplateMasterList = screenTemplateMasterRepository.findByOrgIdAndTemplateId(orgId, new ObjectId(objectId));
-        else screenTemplateMasterList = screenTemplateMasterRepository.findByTemplateId(new ObjectId(objectId));
+        else screenTemplateMasterList = screenTemplateMasterRepository.findByTemplateId(objectId);
         List<ScreenTemplateMasterDto> screenTemplateMasterDtoList = new ArrayList<>();
         if (!CollectionUtils.isEmpty(screenTemplateMasterList)) {
             for (ScreenTemplateMaster screenTemplateMaster : screenTemplateMasterList) {
                 ScreenTemplateMasterDto screenTemplateMasterDto = new ScreenTemplateMasterDto();
-                screenTemplateMasterDto.setTemplateId(screenTemplateMaster.getTemplateId().toHexString());
+                screenTemplateMasterDto.setTemplateId(screenTemplateMaster.getTemplateId());
                 screenTemplateMasterDto.setScreenField(screenTemplateMaster.getScreenField());
                 screenTemplateMasterDto.setScreenName(screenTemplateMaster.getScreenName());
                 screenTemplateMasterDto.setPostScreens(screenTemplateMaster.getPostScreens());
@@ -172,5 +176,60 @@ public class TemplateServiceImpl implements TemplateService {
             }
         }
         return new Response("Transaction completed successfully.", screenTemplateMasterDtoList, HttpStatus.OK);
+    }
+
+    @Override
+    public Response findAllTemplateDetailForOrg(Integer orgId) {
+         List<TemplateDetail> templateDetailList =  templateDetailRepository.findByOrgId(orgId);
+        List<TemplateMasterDto> templateMasterDtoList = new ArrayList<>();
+        for (TemplateDetail templateDetail : templateDetailList) {
+            TemplateMasterDto templateMasterDto = new TemplateMasterDto();
+            templateMasterDto.setTemplateId(String.valueOf(templateDetail.getId()));
+            templateMasterDto.setTemplateField(templateDetail.getTemplateField());
+            templateMasterDto.setTemplateType(templateDetail.getTemplateType());
+            templateMasterDto.setTemplateName(templateDetail.getTemplateName());
+            templateMasterDto.setIcon(templateDetail.getIcon());
+            templateMasterDtoList.add(templateMasterDto);
+        }
+        return new Response("Transaction completed successfully.", templateMasterDtoList, HttpStatus.OK);
+    }
+
+    @Override
+    public Response saveCustomTemplateDetail(TemplateDetailRequest templateDetailRequest ) {
+
+        if(templateDetailRequest.getTemplateId() != null)
+        {
+            List<ScreenTemplateMaster> screenTemplateMasterList;
+            screenTemplateMasterList = screenTemplateMasterRepository.findByTemplateId(templateDetailRequest.getTemplateId());
+            List<ScreenTemplateDetails> screenTemplateMasterDtoList = new ArrayList<>();
+            if (!CollectionUtils.isEmpty(screenTemplateMasterList)) {
+                for (ScreenTemplateMaster screenTemplateMaster : screenTemplateMasterList) {
+                    ScreenTemplateDetails screenTemplateDetails = new ScreenTemplateDetails();
+                    screenTemplateDetails.setTemplateId(screenTemplateMaster.getTemplateId());
+                    screenTemplateDetails.setScreenField(screenTemplateMaster.getScreenField());
+                    screenTemplateDetails.setScreenName(screenTemplateMaster.getScreenName());
+                    screenTemplateDetails.setPostScreens(screenTemplateMaster.getPostScreens());
+                    screenTemplateDetails.setIsDisabled(screenTemplateMaster.getIsDisabled());
+                    screenTemplateDetails.setIsMandatory(screenTemplateMaster.getIsMandatory());
+                    screenTemplateDetails.setThumbnail(screenTemplateMaster.getThumbnail());
+                    screenTemplateDetails.setPreScreens(screenTemplateMaster.getPreScreens());
+                    screenTemplateDetails.setOrgId(screenTemplateMaster.getOrgId());
+                    screenTemplateDetails.setSequence(screenTemplateMaster.getSequence());
+                    screenTemplateMasterDtoList.add(screenTemplateDetails);
+                    screenTemplateDetailRepository.save(screenTemplateDetails);
+                }
+            }
+        }
+
+        if(templateDetailRequest.getOrgId() == null)
+             return new Response("Organization Id is absent", HttpStatus.BAD_REQUEST);
+             TemplateDetail templateDetail = new TemplateDetail();
+             templateDetail.setTemplateField(templateDetailRequest.getTemplateField());
+             templateDetail.setTemplateName(templateDetailRequest.getTemplateName());
+             templateDetail.setTemplateType(templateDetailRequest.getTemplateType());
+             templateDetail.setIcon(templateDetailRequest.getIcon());
+             templateDetail.setOrgId(templateDetailRequest.getOrgId());
+             templateDetail = templateDetailRepository.save(templateDetail);
+         return new Response("Template Saved Successfully",String.valueOf(templateDetail.getId()),HttpStatus.OK);
     }
 }
