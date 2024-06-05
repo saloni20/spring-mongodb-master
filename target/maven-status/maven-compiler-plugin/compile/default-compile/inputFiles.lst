@@ -33,7 +33,6 @@ E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\s
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\serviceImpl\JwtAuthenticationEntryPoint.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\request\TemplateScreenRequest.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\response\Response.java
-E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\service\CustomUserDetailService.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\serviceImpl\ScreenServiceImpl.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\service\ValidPassword.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\repository\TemplateMasterRepository.java

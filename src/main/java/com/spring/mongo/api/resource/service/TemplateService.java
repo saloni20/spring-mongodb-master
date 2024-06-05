@@ -13,19 +13,19 @@ public interface TemplateService {
 
     Response findAllTemplateMaster();
 
-    Response findScreenByOrgId(Integer orgId);
+    Response findScreenByOrgId(Long orgId);
 
     Response updateTemplateScreenMaster(TemplateScreenRequest templateScreenRequest, List<ScreenTemplateMaster> screenTemplateMasterList);
 
     Response deleteTemplateScreenById(Integer id);
 
-    Response findAllScreensByTemplateId(String objectId, Integer orgId);
+    Response findAllScreensByTemplateId(String objectId, Long orgId);
 
-    Response findAllTemplateDetailForOrg(Integer orgId);
+    Response findAllTemplateDetailForOrg(Long orgId);
 
     Response saveCustomTemplateDetail(TemplateDetailRequest orgId);
 
-    Response getScreenTemplateDetail(String screenId, Integer orgId);
+    Response getScreenTemplateDetail(String screenId, Long orgId);
 
     Response updateScreenTemplateDetail(ScreenTemplateDetailsDto screenTemplateDetailsDto);
 }

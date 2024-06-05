@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface TemplateDetailRepository extends MongoRepository<TemplateDetail, ObjectId> {
 
-    List<TemplateDetail> findByOrgId(Integer orgId);
+    List<TemplateDetail> findByOrgId(Long orgId);
 }

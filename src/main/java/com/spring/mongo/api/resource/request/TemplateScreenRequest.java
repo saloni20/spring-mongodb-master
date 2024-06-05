@@ -13,6 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TemplateScreenRequest {
-    private Integer orgId;
+    private Long orgId;
     private List<ScreenTemplateMasterDto> screenTemplateMasterDtoList;
 }

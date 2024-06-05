@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 public class ScreenTemplateDetailsDto {
     private String id;
-    private Integer orgId;
+    private Long orgId;
     private String screenName;
     private int sequence;
     private String thumbnail;

@@ -1,6 +1,7 @@
 package com.spring.mongo.api.resource.config;
 
-import com.spring.mongo.api.resource.service.CustomUserDetailService;
+import com.spring.mongo.api.entity.UserMaster;
+import com.spring.mongo.api.repository.UserMasterRepository;
 import com.spring.mongo.api.resource.serviceImpl.JwtHelper;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
@@ -9,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -25,7 +27,8 @@ import java.io.IOException;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtHelper jwtHelper;
-    private final CustomUserDetailService customUserDetailService;
+
+    private final UserMasterRepository userMasterRepository;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -55,7 +58,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         if (username != null) {
             //fetch user detail from username
-            UserDetails userDetails = customUserDetailService.loadUserByUsername(username);
+            UserDetails userDetails = loadUserByUsername(username);
             boolean validateToken = this.jwtHelper.isTokenValidate(token, userDetails);
             if (Boolean.TRUE.equals(validateToken)) {
                 //set the authentication
@@ -67,5 +70,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             }
         }
         filterChain.doFilter(request, response);
+    }
+
+    private UserMaster loadUserByUsername(String email) throws UsernameNotFoundException {
+        return userMasterRepository.findByEmail(email.toLowerCase()).orElseThrow(() -> new UsernameNotFoundException("No user available."));
     }
 }

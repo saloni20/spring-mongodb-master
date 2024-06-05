@@ -13,5 +13,5 @@ public interface ScreenTemplateDetailRepository extends MongoRepository<ScreenTe
 
     Optional<ScreenTemplateDetails> findById(String objectId);
 
-    Optional<ScreenTemplateDetails> findByOrgIdAndId(Integer orgId, ObjectId objectId);
+    Optional<ScreenTemplateDetails> findByOrgIdAndId(Long orgId, ObjectId objectId);
 }

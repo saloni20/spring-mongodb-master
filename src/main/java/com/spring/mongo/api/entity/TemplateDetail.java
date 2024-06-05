@@ -16,7 +16,7 @@ public class TemplateDetail {
     private ObjectId id;
 
     @Field("org_id")
-    private Integer orgId;
+    private Long orgId;
 
     @Field("template_field")
     private String templateField;

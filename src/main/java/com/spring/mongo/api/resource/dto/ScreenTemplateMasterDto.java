@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ScreenTemplateMasterDto {
-    private Integer orgId;
+    private Long orgId;
     private String screenName;
     private Integer sequence;
     private String thumbnail;

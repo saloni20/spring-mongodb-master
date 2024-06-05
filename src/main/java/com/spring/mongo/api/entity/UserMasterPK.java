@@ -10,6 +10,6 @@ import java.io.Serializable;
 @Setter
 @Document(collection = "userMaster_pk")
 public class UserMasterPK implements Serializable {
-    private Integer organizationId;
+    private Long orgId;
     private Integer userId;
 }

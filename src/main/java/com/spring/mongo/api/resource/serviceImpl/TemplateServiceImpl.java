@@ -102,7 +102,7 @@ public class TemplateServiceImpl implements TemplateService {
     }
 
     @Override
-    public Response findScreenByOrgId(Integer orgId) {
+    public Response findScreenByOrgId(Long orgId) {
         List<ScreenTemplateMaster> screenTemplateMasterList = screenTemplateMasterRepository.findByOrgId(orgId);
         log.info("Fetching all screens with orgId {}", orgId);
         List<ScreenTemplateMasterDto> screenTemplateMasterDtoList = new ArrayList<>();
@@ -143,7 +143,7 @@ public class TemplateServiceImpl implements TemplateService {
     }
 
     @Override
-    public Response findAllScreensByTemplateId(String objectId, Integer orgId) {
+    public Response findAllScreensByTemplateId(String objectId, Long orgId) {
         log.info("Fetching all screens with orgId {} and TemplateId {}", orgId, objectId);
         List<ScreenTemplateMaster> screenTemplateMasterList;
         if (orgId != null)
@@ -175,7 +175,7 @@ public class TemplateServiceImpl implements TemplateService {
     }
 
     @Override
-    public Response findAllTemplateDetailForOrg(Integer orgId) {
+    public Response findAllTemplateDetailForOrg(Long orgId) {
         List<TemplateDetail> templateDetailList = templateDetailRepository.findByOrgId(orgId);
         List<TemplateMasterDto> templateMasterDtoList = new ArrayList<>();
         for (TemplateDetail templateDetail : templateDetailList) {
@@ -233,7 +233,7 @@ public class TemplateServiceImpl implements TemplateService {
     }
 
     @Override
-    public Response getScreenTemplateDetail(String screenId, Integer orgId) {
+    public Response getScreenTemplateDetail(String screenId, Long orgId) {
         log.info("Fetching all screens with orgId {} and screenId {}", orgId, screenId);
         Optional<ScreenTemplateDetails> screenTemplateDetailsOptional = screenTemplateDetailRepository.findByOrgIdAndId(orgId, new ObjectId(screenId));
         ScreenTemplateDetailsDto screenTemplateDetailsDto = new ScreenTemplateDetailsDto();

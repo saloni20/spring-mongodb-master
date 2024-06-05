@@ -55,7 +55,6 @@ com\spring\mongo\api\resource\request\FieldRequest.class
 com\spring\mongo\api\resource\config\SecurityConfig.class
 com\spring\mongo\api\resource\serviceImpl\JwtHelper.class
 com\spring\mongo\api\URLDecryption.class
-com\spring\mongo\api\resource\service\CustomUserDetailService.class
 com\spring\mongo\api\resource\controller\InputController.class
 com\spring\mongo\api\resource\serviceImpl\FieldServiceImpl.class
 com\spring\mongo\api\entity\RowData.class

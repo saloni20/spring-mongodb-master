@@ -24,7 +24,7 @@ public class TemplateScreenController {
     }
 
     @GetMapping("/get/{orgId}")
-    public Response findScreenByOrgId(@PathVariable Integer orgId) {
+    public Response findScreenByOrgId(@PathVariable Long orgId) {
         log.info("request initiated for user with orgId {}", orgId);
         return templateService.findScreenByOrgId(orgId);
     }
@@ -35,13 +35,13 @@ public class TemplateScreenController {
     }
 
     @GetMapping("/getScreenByTemplateId/{templateId}")
-    public Response getScreenByTemplateId(@PathVariable String templateId, @RequestParam(required = false) Integer orgId) {
+    public Response getScreenByTemplateId(@PathVariable String templateId, @RequestParam(required = false) Long orgId) {
         log.info("Request initiated for user with orgId {}", orgId);
         return templateService.findAllScreensByTemplateId(templateId, orgId);
     }
 
     @GetMapping("/getAllTemplateForOrg/{orgId}")
-    public Response getAllTemplateForOrg(@PathVariable Integer orgId) {
+    public Response getAllTemplateForOrg(@PathVariable Long orgId) {
         return templateService.findAllTemplateDetailForOrg(orgId);
     }
 
@@ -51,7 +51,7 @@ public class TemplateScreenController {
     }
 
     @GetMapping("/getScreenTemplateDetail/{screenId}")
-    public Response getScreenTemplateDetail(@PathVariable String screenId, @RequestParam(required = false) Integer orgId) {
+    public Response getScreenTemplateDetail(@PathVariable String screenId, @RequestParam(required = false) Long orgId) {
         log.info("Request initiated for user with screenId {}", screenId);
         return templateService.getScreenTemplateDetail(screenId, orgId);
     }

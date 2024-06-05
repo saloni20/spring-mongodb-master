@@ -1,6 +1,5 @@
 package com.spring.mongo.api.resource.config;
 
-import com.spring.mongo.api.resource.service.CustomUserDetailService;
 import com.spring.mongo.api.resource.serviceImpl.CustomAuthenticationProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final CustomUserDetailService customUserDetailService;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private CustomAuthenticationProvider customAuthenticationProvider;
 
@@ -29,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(customAuthenticationProvider).userDetailsService(this.customUserDetailService).passwordEncoder(passwordEncoder());
+        auth.authenticationProvider(customAuthenticationProvider).userDetailsService(this.userDetailsService()).passwordEncoder(passwordEncoder());
     }
 
     @Override

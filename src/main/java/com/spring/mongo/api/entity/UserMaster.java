@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@Document(collection = "admin")
+@Document(collection = "UserMaster")
 @Getter
 @Setter
 public class UserMaster implements UserDetails {

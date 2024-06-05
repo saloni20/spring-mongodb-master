@@ -10,6 +10,7 @@ public class AdminRegisterDto {
     private String firstname;
     private String lastname;
     private String email;
+    private Long orgId;
     @ValidPassword
     private String password;
 }
