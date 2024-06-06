@@ -20,6 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
@@ -181,33 +182,26 @@ public class TemplateServiceImpl implements TemplateService {
         List<TemplateDetail> templateDetailList = templateDetailRepository.findByOrgIdOrderByInsertedOnDesc(orgId);
         List<TemplateMasterDto> templateMasterDtoList = new ArrayList<>();
         for (TemplateDetail templateDetail : templateDetailList) {
-            TemplateMasterDto templateMasterDto = new TemplateMasterDto();
-            templateMasterDto.setTemplateId(String.valueOf(templateDetail.getId()));
-            templateMasterDto.setTemplateField(templateDetail.getTemplateField());
-            templateMasterDto.setTemplateType(templateDetail.getTemplateType());
-            templateMasterDto.setTemplateName(templateDetail.getTemplateName());
-            templateMasterDto.setIcon(templateDetail.getIcon());
-            templateMasterDto.setInsertedOn(String.valueOf(templateDetail.getInsertedOn()));
+            TemplateMasterDto templateMasterDto = getTemplateMasterDto(templateDetail);
             templateMasterDtoList.add(templateMasterDto);
         }
         return new Response("Transaction completed successfully.", templateMasterDtoList, HttpStatus.OK);
     }
 
-    @Override
-    public Response saveCustomTemplateDetail(TemplateDetailRequest templateDetailRequest) {
-        if (templateDetailRequest.getTemplateId() != null) {
-            List<ScreenTemplateMaster> screenTemplateMasterList;
-            screenTemplateMasterList = screenTemplateMasterRepository.findByTemplateId(templateDetailRequest.getTemplateId());
-            List<ScreenTemplateDetails> screenTemplateMasterDtoList = new ArrayList<>();
-            if (!CollectionUtils.isEmpty(screenTemplateMasterList)) {
-                for (ScreenTemplateMaster screenTemplateMaster : screenTemplateMasterList) {
-                    ScreenTemplateDetails screenTemplateDetails = getScreenTemplateDetails(screenTemplateMaster);
-                    screenTemplateMasterDtoList.add(screenTemplateDetails);
-                    screenTemplateDetailRepository.save(screenTemplateDetails);
-                }
-            }
-        }
+    private static TemplateMasterDto getTemplateMasterDto(TemplateDetail templateDetail) {
+        TemplateMasterDto templateMasterDto = new TemplateMasterDto();
+        templateMasterDto.setTemplateId(String.valueOf(templateDetail.getId()));
+        templateMasterDto.setTemplateField(templateDetail.getTemplateField());
+        templateMasterDto.setTemplateType(templateDetail.getTemplateType());
+        templateMasterDto.setTemplateName(templateDetail.getTemplateName());
+        templateMasterDto.setIcon(templateDetail.getIcon());
+        templateMasterDto.setInsertedOn(String.valueOf(templateDetail.getInsertedOn()));
+        return templateMasterDto;
+    }
 
+    @Override
+    @Transactional
+    public Response saveCustomTemplateDetail(TemplateDetailRequest templateDetailRequest) {
         if (templateDetailRequest.getOrgId() == null)
             return new Response("Organization Id is absent", HttpStatus.BAD_REQUEST);
         TemplateDetail templateDetail = new TemplateDetail();
@@ -218,12 +212,24 @@ public class TemplateServiceImpl implements TemplateService {
         templateDetail.setOrgId(templateDetailRequest.getOrgId());
         templateDetail.setInsertedOn(LocalDateTime.now());
         templateDetail = templateDetailRepository.save(templateDetail);
-        return new Response("Template Saved Successfully", String.valueOf(templateDetail.getId()), HttpStatus.OK);
+        log.info("TemplateId : {} {}", templateDetail.getId(), templateDetailRequest.getTemplateId());
+        if (templateDetailRequest.getTemplateId() != null) {
+            List<ScreenTemplateMaster> screenTemplateMasterList = screenTemplateMasterRepository.findByTemplateId(templateDetailRequest.getTemplateId());
+            List<ScreenTemplateDetails> screenTemplateMasterDtoList = new ArrayList<>();
+            if (!CollectionUtils.isEmpty(screenTemplateMasterList)) {
+                for (ScreenTemplateMaster screenTemplateMaster : screenTemplateMasterList) {
+                    ScreenTemplateDetails screenTemplateDetails = getScreenTemplateDetails(screenTemplateMaster);
+                    screenTemplateDetails.setTemplateId(String.valueOf(templateDetail.getId()));
+                    screenTemplateMasterDtoList.add(screenTemplateDetails);
+                    screenTemplateDetailRepository.save(screenTemplateDetails);
+                }
+            }
+        }
+        return new Response("Transaction completed successfully.", String.valueOf(templateDetail.getId()), HttpStatus.OK);
     }
 
     private static ScreenTemplateDetails getScreenTemplateDetails(ScreenTemplateMaster screenTemplateMaster) {
         ScreenTemplateDetails screenTemplateDetails = new ScreenTemplateDetails();
-        screenTemplateDetails.setTemplateId(screenTemplateMaster.getTemplateId());
         screenTemplateDetails.setScreenField(screenTemplateMaster.getScreenField());
         screenTemplateDetails.setScreenName(screenTemplateMaster.getScreenName());
         screenTemplateDetails.setPostScreens(screenTemplateMaster.getPostScreens());
