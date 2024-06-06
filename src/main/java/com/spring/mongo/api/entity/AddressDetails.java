@@ -12,5 +12,4 @@ public class AddressDetails {
     private String taluka;
     private String street;
     private String village;
-
 }

@@ -1,7 +1,9 @@
 package com.spring.mongo.api.resource.request;
+
 import com.spring.mongo.api.entity.*;
 import lombok.Getter;
 import lombok.Setter;
+
 @Getter
 @Setter
 public class ApplicationRequest {

@@ -11,7 +11,6 @@ public class AppConfig {
     @Bean
     public RestTemplate restTemplate() {
         HttpComponentsClientHttpRequestFactory httpRequestFactory = new HttpComponentsClientHttpRequestFactory();
-
         return new RestTemplate(httpRequestFactory);
     }
 }

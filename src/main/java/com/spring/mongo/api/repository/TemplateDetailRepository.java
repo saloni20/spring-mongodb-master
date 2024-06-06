@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface TemplateDetailRepository extends MongoRepository<TemplateDetail, ObjectId> {
 
-    List<TemplateDetail> findByOrgId(Long orgId);
+    List<TemplateDetail> findByOrgIdOrderByInsertedOnDesc(Long orgId);
 }

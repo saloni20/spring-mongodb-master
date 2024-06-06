@@ -1,10 +1,9 @@
 package com.spring.mongo.api.Security;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,10 +11,10 @@ import java.util.Map;
 @RestController
 @RequestMapping("/invoke")
 @CrossOrigin(origins = "*")
+@AllArgsConstructor
 public class ApiController {
 
-    @Autowired
-    private ApiServiceImpl apiService;
+    private final ApiServiceImpl apiService;
 
     @GetMapping("/get")
     public String getApiResponse(@RequestBody String url) {

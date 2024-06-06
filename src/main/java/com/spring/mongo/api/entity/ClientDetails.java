@@ -1,4 +1,5 @@
 package com.spring.mongo.api.entity;
+
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
@@ -12,7 +13,7 @@ public class ClientDetails {
     @Id
     private Long clientId;
     private String firstName;
-    private String LastName;
+    private String lastName;
     private String mobileNumber;
     private String age;
     private String gender;

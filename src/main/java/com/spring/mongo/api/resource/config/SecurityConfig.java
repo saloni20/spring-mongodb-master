@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // Set session creation policy to stateless
-                .and().authorizeRequests().antMatchers("/admin/**").permitAll().antMatchers("/api/**").hasRole("ADMIN").anyRequest().authenticated().and().csrf().disable().cors();
+                .and().authorizeRequests().antMatchers("/admin/**", "/invoke/**").permitAll().antMatchers("/api/**").hasRole("ADMIN").anyRequest().authenticated().and().csrf().disable().cors();
         http.addFilterBefore(this.jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
     }
 

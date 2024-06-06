@@ -7,6 +7,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @Document(collection = "TemplateDetail")
@@ -30,4 +32,6 @@ public class TemplateDetail {
     @Field("icon")
     private String icon;
 
+    @Field("insertedOn")
+    private LocalDateTime insertedOn;
 }

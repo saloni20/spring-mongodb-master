@@ -15,4 +15,5 @@ public class TemplateMasterDto {
     private String templateName;
     private String templateType;
     private String icon;
+    private String insertedOn;
 }

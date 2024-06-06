@@ -1,8 +1,10 @@
 package com.spring.mongo.api.Security;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class CommonRequest {
     private String id;
     private Object data;

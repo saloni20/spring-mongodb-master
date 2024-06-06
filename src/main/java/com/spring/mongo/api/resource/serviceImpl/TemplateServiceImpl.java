@@ -22,6 +22,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -78,6 +79,7 @@ public class TemplateServiceImpl implements TemplateService {
             templateDetail.setTemplateName(templateMaster.getTemplateName());
             templateDetail.setId(templateMaster.getId());
             templateDetail.setOrgId(screenTemplateMasterDto.getOrgId());
+            templateDetail.setInsertedOn(LocalDateTime.now());
             templateDetailRepository.save(templateDetail);
             return true;
         }
@@ -176,7 +178,7 @@ public class TemplateServiceImpl implements TemplateService {
 
     @Override
     public Response findAllTemplateDetailForOrg(Long orgId) {
-        List<TemplateDetail> templateDetailList = templateDetailRepository.findByOrgId(orgId);
+        List<TemplateDetail> templateDetailList = templateDetailRepository.findByOrgIdOrderByInsertedOnDesc(orgId);
         List<TemplateMasterDto> templateMasterDtoList = new ArrayList<>();
         for (TemplateDetail templateDetail : templateDetailList) {
             TemplateMasterDto templateMasterDto = new TemplateMasterDto();
@@ -185,6 +187,7 @@ public class TemplateServiceImpl implements TemplateService {
             templateMasterDto.setTemplateType(templateDetail.getTemplateType());
             templateMasterDto.setTemplateName(templateDetail.getTemplateName());
             templateMasterDto.setIcon(templateDetail.getIcon());
+            templateMasterDto.setInsertedOn(String.valueOf(templateDetail.getInsertedOn()));
             templateMasterDtoList.add(templateMasterDto);
         }
         return new Response("Transaction completed successfully.", templateMasterDtoList, HttpStatus.OK);
@@ -213,6 +216,7 @@ public class TemplateServiceImpl implements TemplateService {
         templateDetail.setTemplateType(templateDetailRequest.getTemplateType());
         templateDetail.setIcon(templateDetailRequest.getIcon());
         templateDetail.setOrgId(templateDetailRequest.getOrgId());
+        templateDetail.setInsertedOn(LocalDateTime.now());
         templateDetail = templateDetailRepository.save(templateDetail);
         return new Response("Template Saved Successfully", String.valueOf(templateDetail.getId()), HttpStatus.OK);
     }
