@@ -239,6 +239,7 @@ public class TemplateServiceImpl implements TemplateService {
         screenTemplateDetails.setPreScreens(screenTemplateMaster.getPreScreens());
         screenTemplateDetails.setOrgId(screenTemplateMaster.getOrgId());
         screenTemplateDetails.setSequence(screenTemplateMaster.getSequence());
+        screenTemplateDetails.setFieldsMap(screenTemplateMaster.getFieldsMap());
         return screenTemplateDetails;
     }
 

@@ -25,4 +25,7 @@ public class TemplateMaster {
 
     @Field("icon")
     private String icon;
+
+    @Field("description")
+    private String description;
 }

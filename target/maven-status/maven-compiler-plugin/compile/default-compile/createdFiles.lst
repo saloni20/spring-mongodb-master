@@ -17,6 +17,7 @@ com\spring\mongo\api\resource\request\TemplateScreenRequest.class
 com\spring\mongo\api\resource\service\ApplicationDetailService.class
 com\spring\mongo\api\resource\service\InputService.class
 com\spring\mongo\api\Security\DecryptionServiceImpl.class
+com\spring\mongo\api\resource\serviceImpl\DataDetailsServiceImpl.class
 com\spring\mongo\api\resource\serviceImpl\ApplicationDetailServiceImpl.class
 com\spring\mongo\api\Security\CommonRequest.class
 com\spring\mongo\api\entity\ScreenMaster.class
@@ -24,6 +25,7 @@ com\spring\mongo\api\entity\ScreenSavingData.class
 com\spring\mongo\api\resource\controller\TemplateScreenController.class
 com\spring\mongo\api\resource\request\ScreenMasterRequest.class
 com\spring\mongo\api\resource\dto\DatabaseSequence.class
+com\spring\mongo\api\entity\DataDetails.class
 com\spring\mongo\api\entity\RoleMaster.class
 com\spring\mongo\api\resource\controller\ScreenController.class
 com\spring\mongo\api\resource\serviceImpl\CustomAuthenticationProvider.class
@@ -39,6 +41,7 @@ com\spring\mongo\api\resource\service\ScreenService.class
 com\spring\mongo\api\repository\ScreenSaveDataRepository.class
 com\spring\mongo\api\resource\controller\AdminLoginController.class
 com\spring\mongo\api\resource\controller\FieldController.class
+com\spring\mongo\api\entity\DatabaseSequence.class
 com\spring\mongo\api\resource\serviceImpl\SequenceGeneratorService.class
 com\spring\mongo\api\resource\response\Response.class
 com\spring\mongo\api\resource\serviceImpl\TemplateServiceImpl.class
@@ -58,12 +61,17 @@ com\spring\mongo\api\entity\ScreenTemplateDetails.class
 com\spring\mongo\api\resource\serviceImpl\JwtAuthenticationEntryPoint.class
 com\spring\mongo\api\resource\request\ApplicationRequest.class
 com\spring\mongo\api\resource\serviceImpl\AdminLoginServiceImpl.class
+com\spring\mongo\api\resource\service\DataDetailsService.class
 com\spring\mongo\api\Security\ApiServiceImpl.class
 com\spring\mongo\api\Security\AppConfig.class
+com\spring\mongo\api\resource\config\UserModelListener.class
 com\spring\mongo\api\resource\request\TemplateDetailRequest.class
 com\spring\mongo\api\resource\serviceImpl\ScreenServiceImpl.class
+com\spring\mongo\api\resource\controller\DataDetailsController.class
+com\spring\mongo\api\repository\DataDetailRepository.class
 com\spring\mongo\api\Security\ApiController.class
 com\spring\mongo\api\entity\BankDetails.class
+com\spring\mongo\api\resource\dto\DataDetailsDto.class
 com\spring\mongo\api\repository\InputMasterRepository.class
 com\spring\mongo\api\entity\UserMasterPK.class
 com\spring\mongo\api\resource\service\FieldService.class
@@ -75,5 +83,6 @@ com\spring\mongo\api\resource\config\SecurityConfig.class
 com\spring\mongo\api\resource\serviceImpl\JwtHelper.class
 com\spring\mongo\api\URLDecryption.class
 com\spring\mongo\api\resource\controller\InputController.class
+com\spring\mongo\api\resource\config\SequenceGeneratorService.class
 com\spring\mongo\api\resource\serviceImpl\FieldServiceImpl.class
 com\spring\mongo\api\entity\RowData.class

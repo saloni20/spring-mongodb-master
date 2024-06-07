@@ -82,7 +82,7 @@ public class AdminLoginServiceImpl implements AdminLoginService {
         } else {
             user.setEmail(adminRegisterDto.getEmail().toLowerCase());
             userRepository.save(user);
-            return new Response("User Registered successfully.", user, HttpStatus.OK);
+            return new Response("Transaction completed successfully. User created with user id - " + user.getUserMasterPK().getUserId(), user.getUserMasterPK().getUserId(), HttpStatus.OK);
         }
     }
 
