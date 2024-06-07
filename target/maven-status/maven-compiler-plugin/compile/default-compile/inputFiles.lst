@@ -7,6 +7,7 @@ E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\c
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\Security\AppConfig.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\entity\TemplateMaster.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\entity\ScreenMaster.java
+E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\repository\dao\AdminDaoImpl.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\Security\ApiServiceImpl.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\entity\FieldMaster.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\dto\DataDetailsDto.java
@@ -16,7 +17,6 @@ E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\d
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\entity\TemplateDetail.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\serviceImpl\ApplicationDetailServiceImpl.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\SpringMongodbApplication.java
-E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\entity\DatabaseSequence.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\dto\ScreenTemplateDetailsDto.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\service\ApplicationDetailService.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\serviceImpl\JwtHelper.java
@@ -46,7 +46,6 @@ E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\c
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\dto\LoginRequestDto.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\service\AdminLoginService.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\repository\ScreenMasterRepository.java
-E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\config\SequenceGeneratorService.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\Security\CommonRequest.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\serviceImpl\AdminLoginServiceImpl.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\serviceImpl\JwtAuthenticationEntryPoint.java

@@ -66,10 +66,10 @@ public class TemplateScreenController {
         return templateService.saveScreenDetailsTemplate(templateScreenRequest);
     }
 
-/*    @GetMapping("/findAll")
-    public Response findAllTemplateMaster() {
-        return templateService.findAllTemplateMaster();
-    }*/
+//    @GetMapping("/findAll")
+//    public Response findAllTemplateMaster() {
+//        return templateService.findAllTemplateMaster();
+//    }
 
     @GetMapping("/getScreenDetails/{templateId}")
     public Response findAllScreensDetailsByTemplateId(@PathVariable String templateId, @RequestParam(required = false) Long orgId) {

@@ -22,7 +22,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -74,24 +73,24 @@ public class TemplateServiceImpl implements TemplateService {
 
     private static ScreenTemplateDetails getScreenTemplateDetails(ScreenTemplateMasterDto screenTemplateMasterDto) {
         ScreenTemplateDetails screenTemplateDetails = new ScreenTemplateDetails();
-        if(screenTemplateMasterDto.getSequence()!=null)
+        if (screenTemplateMasterDto.getSequence() != null)
             screenTemplateDetails.setSequence(screenTemplateMasterDto.getSequence());
-        if(screenTemplateMasterDto.getPostScreens()!=null)
+        if (screenTemplateMasterDto.getPostScreens() != null)
             screenTemplateDetails.setPostScreens(screenTemplateMasterDto.getPostScreens());
-        if(screenTemplateMasterDto.getPreScreens()!=null)
+        if (screenTemplateMasterDto.getPreScreens() != null)
             screenTemplateDetails.setPreScreens(screenTemplateMasterDto.getPreScreens());
-        if(screenTemplateMasterDto.getScreenName()!=null)
+        if (screenTemplateMasterDto.getScreenName() != null)
             screenTemplateDetails.setScreenName(screenTemplateMasterDto.getScreenName());
-        if(screenTemplateMasterDto.getThumbnail()!=null)
+        if (screenTemplateMasterDto.getThumbnail() != null)
             screenTemplateDetails.setThumbnail(screenTemplateMasterDto.getThumbnail());
-        if(screenTemplateMasterDto.getIsMandatory()!=null)
+        if (screenTemplateMasterDto.getIsMandatory() != null)
             screenTemplateDetails.setIsMandatory(screenTemplateMasterDto.getIsMandatory());
-        if(screenTemplateMasterDto.getIsDisabled()!=null)
+        if (screenTemplateMasterDto.getIsDisabled() != null)
             screenTemplateDetails.setIsDisabled(screenTemplateMasterDto.getIsDisabled());
-        if(screenTemplateMasterDto.getScreenField()!=null)
+        if (screenTemplateMasterDto.getScreenField() != null)
             screenTemplateDetails.setScreenField(screenTemplateMasterDto.getScreenField());
-        if(screenTemplateMasterDto.getOrgId() != null)
-        screenTemplateDetails.setOrgId(screenTemplateMasterDto.getOrgId());
+        if (screenTemplateMasterDto.getOrgId() != null)
+            screenTemplateDetails.setOrgId(screenTemplateMasterDto.getOrgId());
         return screenTemplateDetails;
     }
 
@@ -318,12 +317,11 @@ public class TemplateServiceImpl implements TemplateService {
         if (screenTemplateDetailsOptional.isPresent()) {
             screenTemplateDetails = screenTemplateDetailsOptional.get();
             updateScreenTemplateDetails(screenTemplateDetailsDto, screenTemplateDetails);
-        }
-        else {
+        } else {
             screenTemplateDetails = new ScreenTemplateDetails();
             updateScreenTemplateDetails(screenTemplateDetailsDto, screenTemplateDetails);
         }
-        return new Response("Transaction completed successfully.",screenTemplateDetails.getScreenTemplateDetailId().toHexString(),HttpStatus.OK);
+        return new Response("Transaction completed successfully.", screenTemplateDetails.getScreenTemplateDetailId().toHexString(), HttpStatus.OK);
     }
 
     @Override
@@ -339,20 +337,12 @@ public class TemplateServiceImpl implements TemplateService {
             ScreenTemplateDetails screenTemplateDetails = getScreenTemplateDetails(screenTemplateMasterDto);
             screenTemplateDetails = screenTemplateDetailRepository.save(screenTemplateDetails);
             screenDetailsIdList.add(screenTemplateDetails.getScreenTemplateDetailId().toHexString());
-            if (savingTemplateDetail(screenTemplateMasterDto)){
-
-
-            }
-            else return new Response("No such template found", HttpStatus.BAD_REQUEST);
+            if (!savingTemplateDetail(screenTemplateMasterDto))
+                return new Response("No such template found", HttpStatus.BAD_REQUEST);
         }
-        return new Response("Transaction completed successfully.",screenDetailsIdList,HttpStatus.OK);
+        return new Response("Transaction completed successfully.", screenDetailsIdList, HttpStatus.OK);
     }
 
-    private void saveNewScreenTemplateDetail(ScreenTemplateDetailsDto screenTemplateDetailsDto, ScreenTemplateDetails screenTemplateDetails)
-    {
-
-
-    }
     private void updateScreenTemplateDetails(ScreenTemplateDetailsDto screenTemplateDetailsDto, ScreenTemplateDetails screenTemplateDetails) {
         screenTemplateDetails.setSequence(screenTemplateDetailsDto.getSequence());
         screenTemplateDetails.setPostScreens(screenTemplateDetailsDto.getPostScreens());
@@ -372,22 +362,22 @@ public class TemplateServiceImpl implements TemplateService {
         List<ScreenTemplateMasterDto> screenTemplateMasterDtoList = templateScreenRequest.getScreenTemplateMasterDtoList();
         for (ScreenTemplateMasterDto screenTemplateMasterDto : screenTemplateMasterDtoList) {
             ScreenTemplateDetails screenTemplateDetails = screenTemplateDetailsList.get(i++);
-            if(screenTemplateMasterDto.getSequence()!=null)
-              screenTemplateDetails.setSequence(screenTemplateMasterDto.getSequence());
-            if(screenTemplateMasterDto.getPostScreens()!=null)
-            screenTemplateDetails.setPostScreens(screenTemplateMasterDto.getPostScreens());
-            if(screenTemplateMasterDto.getPreScreens()!=null)
-            screenTemplateDetails.setPreScreens(screenTemplateMasterDto.getPreScreens());
-            if(screenTemplateMasterDto.getScreenName()!=null)
-            screenTemplateDetails.setScreenName(screenTemplateMasterDto.getScreenName());
-            if(screenTemplateMasterDto.getThumbnail()!=null)
-            screenTemplateDetails.setThumbnail(screenTemplateMasterDto.getThumbnail());
-            if(screenTemplateMasterDto.getIsMandatory()!=null)
-            screenTemplateDetails.setIsMandatory(screenTemplateMasterDto.getIsMandatory());
-            if(screenTemplateMasterDto.getIsDisabled()!=null)
-            screenTemplateDetails.setIsDisabled(screenTemplateMasterDto.getIsDisabled());
-            if(screenTemplateMasterDto.getScreenField()!=null)
-            screenTemplateDetails.setScreenField(screenTemplateMasterDto.getScreenField());
+            if (screenTemplateMasterDto.getSequence() != null)
+                screenTemplateDetails.setSequence(screenTemplateMasterDto.getSequence());
+            if (screenTemplateMasterDto.getPostScreens() != null)
+                screenTemplateDetails.setPostScreens(screenTemplateMasterDto.getPostScreens());
+            if (screenTemplateMasterDto.getPreScreens() != null)
+                screenTemplateDetails.setPreScreens(screenTemplateMasterDto.getPreScreens());
+            if (screenTemplateMasterDto.getScreenName() != null)
+                screenTemplateDetails.setScreenName(screenTemplateMasterDto.getScreenName());
+            if (screenTemplateMasterDto.getThumbnail() != null)
+                screenTemplateDetails.setThumbnail(screenTemplateMasterDto.getThumbnail());
+            if (screenTemplateMasterDto.getIsMandatory() != null)
+                screenTemplateDetails.setIsMandatory(screenTemplateMasterDto.getIsMandatory());
+            if (screenTemplateMasterDto.getIsDisabled() != null)
+                screenTemplateDetails.setIsDisabled(screenTemplateMasterDto.getIsDisabled());
+            if (screenTemplateMasterDto.getScreenField() != null)
+                screenTemplateDetails.setScreenField(screenTemplateMasterDto.getScreenField());
             screenTemplateDetails.setOrgId(screenTemplateMasterDto.getOrgId());
             if (savingTemplateDetail(screenTemplateMasterDto))
                 screenTemplateDetailRepository.save(screenTemplateDetails);

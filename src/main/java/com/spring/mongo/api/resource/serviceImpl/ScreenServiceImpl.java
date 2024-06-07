@@ -158,12 +158,9 @@ public class ScreenServiceImpl implements ScreenService {
 
     @Override
     public Response findScreenDataByTemplateId(String templateId) {
-        List <ScreenSavingData> screenSavingDataList = screenSaveDataRepository.findByTemplateId(templateId);
-        if(!CollectionUtils.isEmpty(screenSavingDataList)) {
-            return new Response("Transaction Successful.",screenSavingDataList,HttpStatus.OK);
-        }
-        else
-            return new Response("No data found for templateId",screenSavingDataList,HttpStatus.BAD_REQUEST);
+        List<ScreenSavingData> screenSavingDataList = screenSaveDataRepository.findByTemplateId(templateId);
+        if (!CollectionUtils.isEmpty(screenSavingDataList)) {
+            return new Response("Transaction completed successfully.", screenSavingDataList, HttpStatus.OK);
+        } else return new Response("No data found for templateId", screenSavingDataList, HttpStatus.BAD_REQUEST);
     }
-
 }

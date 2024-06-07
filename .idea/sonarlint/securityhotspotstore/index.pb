@@ -1713,3 +1713,7 @@ Isrc/main/java/com/spring/mongo/api/resource/config/UserModelListener.java,b\e\
 Psrc/main/java/com/spring/mongo/api/resource/config/SequenceGeneratorService.java,f\4\f42bdf2e3104df1f8b54ee25baf09ef338b31167
 o
 ?src/main/java/com/spring/mongo/api/entity/DatabaseSequence.java,6\4\64144531fd800e9eedfd59ed9375fa1c6004bd3f
+Š
+Zsrc/main/java/com/spring/mongo/api/resource/serviceImpl/CustomAuthenticationsProvider.java,1\c\1c85e2265f5da8db531e880e17dc2ebc281d8b60
+s
+Csrc/main/java/com/spring/mongo/api/repository/dao/AdminDaoImpl.java,7\d\7d2d1e46ca6f6a3028b2430b116703d91e618845

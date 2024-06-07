@@ -4,6 +4,7 @@ import com.spring.mongo.api.entity.RoleMaster;
 import com.spring.mongo.api.entity.UserMaster;
 import com.spring.mongo.api.entity.UserMasterPK;
 import com.spring.mongo.api.repository.UserMasterRepository;
+import com.spring.mongo.api.repository.dao.AdminDaoImpl;
 import com.spring.mongo.api.resource.dto.AdminRegisterDto;
 import com.spring.mongo.api.resource.dto.LoginRequestDto;
 import com.spring.mongo.api.resource.dto.LoginResponseDto;
@@ -25,7 +26,7 @@ import java.util.Optional;
 @Slf4j
 public class AdminLoginServiceImpl implements AdminLoginService {
 
-    private final UserMasterRepository userRepository;
+    private final AdminDaoImpl adminDaoImpl;
     private final PasswordEncoder passwordEncoder;
     private final JwtHelper jwtService;
     private final CustomAuthenticationProvider customAuthenticationProvider;
@@ -75,13 +76,19 @@ public class AdminLoginServiceImpl implements AdminLoginService {
         user.setRole(RoleMaster.ROLE_ADMIN);
         UserMasterPK userMasterPK = new UserMasterPK();
         userMasterPK.setOrgId(adminRegisterDto.getOrgId());
+        String userIdStart = "101";
+        int count = 0;
+//        Long id = Long.valueOf(adminDaoImpl.findMaxUserId());
+        String userId = userIdStart + count++;
+//        log.info("User : {}", id);
+
         user.setUserMasterPK(userMasterPK);
         Optional<UserMaster> userMaster = userMasterRepository.findByEmailAndUserMasterPKOrgId(adminRegisterDto.getEmail().toLowerCase(), adminRegisterDto.getOrgId());
         if (userMaster.isPresent()) {
             return new Response("User already available with given email address.", HttpStatus.BAD_REQUEST);
         } else {
             user.setEmail(adminRegisterDto.getEmail().toLowerCase());
-            userRepository.save(user);
+            userMasterRepository.save(user);
             return new Response("Transaction completed successfully. User created with user id - " + user.getUserMasterPK().getUserId(), user.getUserMasterPK().getUserId(), HttpStatus.OK);
         }
     }

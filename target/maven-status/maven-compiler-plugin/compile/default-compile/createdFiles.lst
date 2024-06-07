@@ -41,7 +41,6 @@ com\spring\mongo\api\resource\service\ScreenService.class
 com\spring\mongo\api\repository\ScreenSaveDataRepository.class
 com\spring\mongo\api\resource\controller\AdminLoginController.class
 com\spring\mongo\api\resource\controller\FieldController.class
-com\spring\mongo\api\entity\DatabaseSequence.class
 com\spring\mongo\api\resource\serviceImpl\SequenceGeneratorService.class
 com\spring\mongo\api\resource\response\Response.class
 com\spring\mongo\api\resource\serviceImpl\TemplateServiceImpl.class
@@ -51,6 +50,7 @@ com\spring\mongo\api\resource\controller\ApplicationDetailController.class
 com\spring\mongo\api\resource\service\ValidPassword.class
 com\spring\mongo\api\entity\FamilyDetails.class
 com\spring\mongo\api\entity\TemplateDetail.class
+com\spring\mongo\api\repository\dao\AdminDaoImpl.class
 com\spring\mongo\api\resource\dto\LoginRequestDto.class
 com\spring\mongo\api\resource\dto\AdminRegisterDto.class
 com\spring\mongo\api\entity\TemplateMaster.class
@@ -83,6 +83,5 @@ com\spring\mongo\api\resource\config\SecurityConfig.class
 com\spring\mongo\api\resource\serviceImpl\JwtHelper.class
 com\spring\mongo\api\URLDecryption.class
 com\spring\mongo\api\resource\controller\InputController.class
-com\spring\mongo\api\resource\config\SequenceGeneratorService.class
 com\spring\mongo\api\resource\serviceImpl\FieldServiceImpl.class
 com\spring\mongo\api\entity\RowData.class
