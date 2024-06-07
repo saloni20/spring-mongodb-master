@@ -4,11 +4,14 @@ import com.spring.mongo.api.entity.UserMaster;
 import com.spring.mongo.api.entity.UserMasterPK;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UserMasterRepository extends MongoRepository<UserMaster, UserMasterPK> {
 
     Optional<UserMaster> findByEmail(String email);
 
-    Optional<UserMaster> findByEmailAndUserMasterPKOrgId(String email, Long orgId);
+    Optional<UserMaster> findByEmailAndUserMasterPK_orgId(String email, Long orgId);
+
+    List<UserMaster> findAllByUserMasterPK_orgId(Long orgId);
 }

@@ -1717,3 +1717,5 @@ o
 Zsrc/main/java/com/spring/mongo/api/resource/serviceImpl/CustomAuthenticationsProvider.java,1\c\1c85e2265f5da8db531e880e17dc2ebc281d8b60
 s
 Csrc/main/java/com/spring/mongo/api/repository/dao/AdminDaoImpl.java,7\d\7d2d1e46ca6f6a3028b2430b116703d91e618845
+u
+Esrc/main/java/com/spring/mongo/api/resource/serviceImpl/AdminDao.java,a\5\a560588d0f80443a304c488e6d78c650c7386a9a

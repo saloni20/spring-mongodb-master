@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.EmbeddedId;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
 @Getter
 @Setter
 public class UserMaster implements UserDetails {
+    @EmbeddedId
     private UserMasterPK userMasterPK;
     private String firstname;
     private String lastname;

@@ -4,7 +4,6 @@ import com.spring.mongo.api.entity.RoleMaster;
 import com.spring.mongo.api.entity.UserMaster;
 import com.spring.mongo.api.entity.UserMasterPK;
 import com.spring.mongo.api.repository.UserMasterRepository;
-import com.spring.mongo.api.repository.dao.AdminDaoImpl;
 import com.spring.mongo.api.resource.dto.AdminRegisterDto;
 import com.spring.mongo.api.resource.dto.LoginRequestDto;
 import com.spring.mongo.api.resource.dto.LoginResponseDto;
@@ -17,16 +16,17 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @AllArgsConstructor
 @Service
 @Slf4j
 public class AdminLoginServiceImpl implements AdminLoginService {
-
-    private final AdminDaoImpl adminDaoImpl;
     private final PasswordEncoder passwordEncoder;
     private final JwtHelper jwtService;
     private final CustomAuthenticationProvider customAuthenticationProvider;
@@ -54,7 +54,7 @@ public class AdminLoginServiceImpl implements AdminLoginService {
 
     private Response loadUserByUsername(String email, Long orgId) throws UsernameNotFoundException {
         if (orgId != null && StringUtils.hasText(email)) {
-            Optional<UserMaster> userMasterOptional = userMasterRepository.findByEmailAndUserMasterPKOrgId(email.toLowerCase(), orgId);
+            Optional<UserMaster> userMasterOptional = userMasterRepository.findByEmailAndUserMasterPK_orgId(email.toLowerCase(), orgId);
             if (userMasterOptional.isPresent()) {
                 UserMaster userMaster = userMasterOptional.get();
                 return new Response("Transaction completed successfully.", userMaster, HttpStatus.OK);
@@ -67,6 +67,7 @@ public class AdminLoginServiceImpl implements AdminLoginService {
     }
 
     @Override
+    @Transactional
     public Response registerUser(AdminRegisterDto adminRegisterDto) {
         UserMaster user = new UserMaster();
         user.setEmail(adminRegisterDto.getEmail());
@@ -76,14 +77,17 @@ public class AdminLoginServiceImpl implements AdminLoginService {
         user.setRole(RoleMaster.ROLE_ADMIN);
         UserMasterPK userMasterPK = new UserMasterPK();
         userMasterPK.setOrgId(adminRegisterDto.getOrgId());
-        String userIdStart = "101";
-        int count = 0;
-//        Long id = Long.valueOf(adminDaoImpl.findMaxUserId());
-        String userId = userIdStart + count++;
-//        log.info("User : {}", id);
-
+        List<UserMaster> usersMasters = userMasterRepository.findAllByUserMasterPK_orgId(adminRegisterDto.getOrgId());
+        Optional<Integer> maxUserId = usersMasters.stream().map(userMaster -> {
+            UserMasterPK masterPK = userMaster.getUserMasterPK();
+            return masterPK != null ? masterPK.getUserId() : null;
+        }).filter(Objects::nonNull).max(Long::compare);
+        if (maxUserId.isPresent()) {
+            Integer userId = maxUserId.get() + 1;
+            userMasterPK.setUserId(userId);
+        }
         user.setUserMasterPK(userMasterPK);
-        Optional<UserMaster> userMaster = userMasterRepository.findByEmailAndUserMasterPKOrgId(adminRegisterDto.getEmail().toLowerCase(), adminRegisterDto.getOrgId());
+        Optional<UserMaster> userMaster = userMasterRepository.findByEmailAndUserMasterPK_orgId(adminRegisterDto.getEmail().toLowerCase(), adminRegisterDto.getOrgId());
         if (userMaster.isPresent()) {
             return new Response("User already available with given email address.", HttpStatus.BAD_REQUEST);
         } else {

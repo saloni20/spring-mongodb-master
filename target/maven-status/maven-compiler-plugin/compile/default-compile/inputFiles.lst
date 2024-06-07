@@ -7,7 +7,6 @@ E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\c
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\Security\AppConfig.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\entity\TemplateMaster.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\entity\ScreenMaster.java
-E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\repository\dao\AdminDaoImpl.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\Security\ApiServiceImpl.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\entity\FieldMaster.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\dto\DataDetailsDto.java

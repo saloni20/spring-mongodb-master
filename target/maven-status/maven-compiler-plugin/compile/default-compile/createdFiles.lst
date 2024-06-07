@@ -50,7 +50,6 @@ com\spring\mongo\api\resource\controller\ApplicationDetailController.class
 com\spring\mongo\api\resource\service\ValidPassword.class
 com\spring\mongo\api\entity\FamilyDetails.class
 com\spring\mongo\api\entity\TemplateDetail.class
-com\spring\mongo\api\repository\dao\AdminDaoImpl.class
 com\spring\mongo\api\resource\dto\LoginRequestDto.class
 com\spring\mongo\api\resource\dto\AdminRegisterDto.class
 com\spring\mongo\api\entity\TemplateMaster.class
