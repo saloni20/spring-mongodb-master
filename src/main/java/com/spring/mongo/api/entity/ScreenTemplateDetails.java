@@ -46,6 +46,10 @@ public class ScreenTemplateDetails {
     @Field("templateId")
     private String templateId;
 
+    @Field("status")
+    private String status;
+
     @Field("fieldsMap")
     private List<Object> fieldsMap;
+
 }
