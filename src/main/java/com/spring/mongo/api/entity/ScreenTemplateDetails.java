@@ -14,7 +14,7 @@ import java.util.List;
 @Document(collection = "ScreenTemplateDetail")
 public class ScreenTemplateDetails {
     @Id
-    private ObjectId id;
+    private ObjectId screenTemplateDetailId;
 
     @Field("orgId")
     private Long orgId;

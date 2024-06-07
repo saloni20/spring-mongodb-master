@@ -49,4 +49,9 @@ public class ScreenController {
     public Response findScreenDataById(@PathVariable("screenId") String screenId) {
         return screenService.findScreenDataById(screenId);
     }
+
+    @GetMapping("/getAllScreen/{templateId}")
+    public Response findScreenDataByTemplateId(@PathVariable("templateId") String screenId) {
+        return screenService.findScreenDataByTemplateId(screenId);
+    }
 }

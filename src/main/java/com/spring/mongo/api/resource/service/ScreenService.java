@@ -20,4 +20,6 @@ public interface ScreenService {
     Response saveScreenData(ScreenSavingData screenSavingData);
 
     Response findScreenDataById(String screenId);
+
+    Response findScreenDataByTemplateId(String templateId);
 }

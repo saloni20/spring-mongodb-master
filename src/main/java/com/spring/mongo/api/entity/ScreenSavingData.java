@@ -11,7 +11,9 @@ import java.util.List;
 @Setter
 @Document(collection = "screen_data")
 public class ScreenSavingData {
+
     @Id
     private String screenId;
+    private String templateId;
     private List<RowData> data;
 }

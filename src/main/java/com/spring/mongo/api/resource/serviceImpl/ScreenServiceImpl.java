@@ -17,6 +17,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +72,7 @@ public class ScreenServiceImpl implements ScreenService {
 
     private static ScreenTemplateDetailsDto getScreenTemplateDetail(ScreenTemplateDetails screenTemplateDetails) {
         ScreenTemplateDetailsDto screenTemplateDetailsDto = new ScreenTemplateDetailsDto();
-        screenTemplateDetailsDto.setId(screenTemplateDetails.getId().toHexString());
+        screenTemplateDetailsDto.setId(screenTemplateDetails.getScreenTemplateDetailId().toHexString());
         screenTemplateDetailsDto.setSequence(screenTemplateDetails.getSequence());
         screenTemplateDetailsDto.setPostScreens(screenTemplateDetails.getPostScreens());
         screenTemplateDetailsDto.setPreScreens(screenTemplateDetails.getPreScreens());
@@ -154,4 +155,15 @@ public class ScreenServiceImpl implements ScreenService {
         Optional<ScreenSavingData> dataOptional = screenSaveDataRepository.findById(screenId);
         return dataOptional.map(screenSavingData -> new Response("Data Fetched", screenSavingData, HttpStatus.OK)).orElseGet(() -> new Response("No such screen data found", null, HttpStatus.BAD_REQUEST));
     }
+
+    @Override
+    public Response findScreenDataByTemplateId(String templateId) {
+        List <ScreenSavingData> screenSavingDataList = screenSaveDataRepository.findByTemplateId(templateId);
+        if(!CollectionUtils.isEmpty(screenSavingDataList)) {
+            return new Response("Transaction Successful.",screenSavingDataList,HttpStatus.OK);
+        }
+        else
+            return new Response("No data found for templateId",screenSavingDataList,HttpStatus.BAD_REQUEST);
+    }
+
 }
