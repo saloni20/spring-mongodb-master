@@ -344,16 +344,24 @@ public class TemplateServiceImpl implements TemplateService {
     }
 
     private void updateScreenTemplateDetails(ScreenTemplateDetailsDto screenTemplateDetailsDto, ScreenTemplateDetails screenTemplateDetails) {
-        screenTemplateDetails.setSequence(screenTemplateDetailsDto.getSequence());
-        screenTemplateDetails.setPostScreens(screenTemplateDetailsDto.getPostScreens());
-        screenTemplateDetails.setPreScreens(screenTemplateDetailsDto.getPreScreens());
-        screenTemplateDetails.setScreenName(screenTemplateDetailsDto.getScreenName());
-        screenTemplateDetails.setThumbnail(screenTemplateDetailsDto.getThumbnail());
-        screenTemplateDetails.setIsMandatory(screenTemplateDetailsDto.getIsMandatory());
-        screenTemplateDetails.setIsDisabled(screenTemplateDetailsDto.getIsDisabled());
-        screenTemplateDetails.setScreenField(screenTemplateDetailsDto.getScreenField());
-        screenTemplateDetails.setTemplateId(screenTemplateDetailsDto.getTemplateId());
-        screenTemplateDetails.setFieldsMap(screenTemplateDetailsDto.getFieldsMap());
+        if (screenTemplateDetailsDto.getSequence() > 0)
+            screenTemplateDetails.setSequence(screenTemplateDetailsDto.getSequence());
+        if (screenTemplateDetailsDto.getPostScreens() != null)
+            screenTemplateDetails.setPostScreens(screenTemplateDetailsDto.getPostScreens());
+        if (screenTemplateDetailsDto.getPreScreens() != null)
+            screenTemplateDetails.setPreScreens(screenTemplateDetailsDto.getPreScreens());
+        if (screenTemplateDetailsDto.getScreenName() != null)
+            screenTemplateDetails.setScreenName(screenTemplateDetailsDto.getScreenName());
+        if (screenTemplateDetailsDto.getThumbnail() != null)
+            screenTemplateDetails.setThumbnail(screenTemplateDetailsDto.getThumbnail());
+        if (screenTemplateDetailsDto.getIsMandatory() != null)
+            screenTemplateDetails.setIsMandatory(screenTemplateDetailsDto.getIsMandatory());
+        if (screenTemplateDetailsDto.getIsDisabled() != null)
+            screenTemplateDetails.setIsDisabled(screenTemplateDetailsDto.getIsDisabled());
+        if (screenTemplateDetailsDto.getScreenField() != null)
+            screenTemplateDetails.setScreenField(screenTemplateDetailsDto.getScreenField());
+        if(screenTemplateDetailsDto.getStatus() !=null)
+            screenTemplateDetails.setStatus(screenTemplateDetailsDto.getStatus());
         screenTemplateDetailRepository.save(screenTemplateDetails);
     }
 
@@ -378,6 +386,8 @@ public class TemplateServiceImpl implements TemplateService {
                 screenTemplateDetails.setIsDisabled(screenTemplateMasterDto.getIsDisabled());
             if (screenTemplateMasterDto.getScreenField() != null)
                 screenTemplateDetails.setScreenField(screenTemplateMasterDto.getScreenField());
+            if(screenTemplateMasterDto.getStatus() !=null)
+                screenTemplateDetails.setStatus(screenTemplateMasterDto.getStatus());
             screenTemplateDetails.setOrgId(screenTemplateMasterDto.getOrgId());
             if (savingTemplateDetail(screenTemplateMasterDto))
                 screenTemplateDetailRepository.save(screenTemplateDetails);

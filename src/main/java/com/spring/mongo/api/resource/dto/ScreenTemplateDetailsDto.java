@@ -23,5 +23,6 @@ public class ScreenTemplateDetailsDto {
     private String preScreens;
     private String screenField;
     private String templateId;
+    private String status;
     private List<Object> fieldsMap;
 }
