@@ -21,6 +21,8 @@ public interface TemplateService {
 
     Response findAllScreensByTemplateId(String objectId, Long orgId);
 
+    Response findAllScreensDetailsByTemplateId(String templateId, Long orgId);
+
     Response findAllTemplateDetailForOrg(Long orgId);
 
     Response saveCustomTemplateDetail(TemplateDetailRequest orgId);
@@ -28,4 +30,6 @@ public interface TemplateService {
     Response getScreenTemplateDetail(String screenId, Long orgId);
 
     Response updateScreenTemplateDetail(ScreenTemplateDetailsDto screenTemplateDetailsDto);
+
+    Response saveScreenDetailsTemplate(TemplateScreenRequest templateScreenRequest);
 }

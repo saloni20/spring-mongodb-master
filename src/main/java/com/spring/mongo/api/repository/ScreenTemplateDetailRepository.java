@@ -1,6 +1,7 @@
 package com.spring.mongo.api.repository;
 
 import com.spring.mongo.api.entity.ScreenTemplateDetails;
+import com.spring.mongo.api.entity.ScreenTemplateMaster;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
@@ -11,7 +12,10 @@ public interface ScreenTemplateDetailRepository extends MongoRepository<ScreenTe
 
     List<ScreenTemplateDetails> findByTemplateId(String templateId);
 
-    Optional<ScreenTemplateDetails> findById(String objectId);
+    Optional<ScreenTemplateDetails> findByScreenTemplateDetailId(String objectId);
 
-    Optional<ScreenTemplateDetails> findByOrgIdAndId(Long orgId, ObjectId objectId);
+    Optional<ScreenTemplateDetails> findByOrgIdAndScreenTemplateDetailId(Long orgId, ObjectId objectId);
+
+    List<ScreenTemplateDetails> findByOrgId(Long orgId);
+    List<ScreenTemplateDetails> findByOrgIdAndTemplateId(Long orgId, String objectId);
 }
