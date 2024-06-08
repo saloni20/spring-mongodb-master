@@ -360,8 +360,10 @@ public class TemplateServiceImpl implements TemplateService {
             screenTemplateDetails.setIsDisabled(screenTemplateDetailsDto.getIsDisabled());
         if (screenTemplateDetailsDto.getScreenField() != null)
             screenTemplateDetails.setScreenField(screenTemplateDetailsDto.getScreenField());
-        if(screenTemplateDetailsDto.getStatus() !=null)
+        if (screenTemplateDetailsDto.getStatus() != null)
             screenTemplateDetails.setStatus(screenTemplateDetailsDto.getStatus());
+        if (screenTemplateDetailsDto.getFieldsMap() != null)
+            screenTemplateDetails.setFieldsMap(screenTemplateDetailsDto.getFieldsMap());
         screenTemplateDetailRepository.save(screenTemplateDetails);
     }
 
@@ -386,7 +388,7 @@ public class TemplateServiceImpl implements TemplateService {
                 screenTemplateDetails.setIsDisabled(screenTemplateMasterDto.getIsDisabled());
             if (screenTemplateMasterDto.getScreenField() != null)
                 screenTemplateDetails.setScreenField(screenTemplateMasterDto.getScreenField());
-            if(screenTemplateMasterDto.getStatus() !=null)
+            if (screenTemplateMasterDto.getStatus() != null)
                 screenTemplateDetails.setStatus(screenTemplateMasterDto.getStatus());
             screenTemplateDetails.setOrgId(screenTemplateMasterDto.getOrgId());
             if (savingTemplateDetail(screenTemplateMasterDto))
