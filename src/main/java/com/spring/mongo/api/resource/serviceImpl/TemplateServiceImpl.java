@@ -41,11 +41,6 @@ public class TemplateServiceImpl implements TemplateService {
     @Override
     public Response saveScreenMasterTemplateInformation(TemplateScreenRequest templateScreenRequest) {
         //check if already there is a list of screen templates available for logged-in user's orgID
-        List<ScreenTemplateMaster> screenTemplateMasters = screenTemplateMasterRepository.findByOrgId(templateScreenRequest.getOrgId());
-        if (!CollectionUtils.isEmpty(screenTemplateMasters)) {
-            log.info("already screens and template saved for the current orgId");
-            updateTemplateScreenMaster(templateScreenRequest, screenTemplateMasters);
-        }
         List<ScreenTemplateMasterDto> screenTemplateMasterDtoList = templateScreenRequest.getScreenTemplateMasterDtoList();
         for (ScreenTemplateMasterDto screenTemplateMasterDto : screenTemplateMasterDtoList) {
             ScreenTemplateMaster screenTemplateMaster = getScreenTemplateMaster(screenTemplateMasterDto);
@@ -147,14 +142,24 @@ public class TemplateServiceImpl implements TemplateService {
         List<ScreenTemplateMasterDto> screenTemplateMasterDtoList = templateScreenRequest.getScreenTemplateMasterDtoList();
         for (ScreenTemplateMasterDto screenTemplateMasterDto : screenTemplateMasterDtoList) {
             ScreenTemplateMaster screenTemplateMaster = screenTemplateMasterList.get(i++);
-            screenTemplateMaster.setSequence(screenTemplateMasterDto.getSequence());
-            screenTemplateMaster.setPostScreens(screenTemplateMasterDto.getPostScreens());
-            screenTemplateMaster.setPreScreens(screenTemplateMasterDto.getPreScreens());
-            screenTemplateMaster.setScreenName(screenTemplateMasterDto.getScreenName());
-            screenTemplateMaster.setThumbnail(screenTemplateMasterDto.getThumbnail());
-            screenTemplateMaster.setIsMandatory(screenTemplateMasterDto.getIsMandatory());
-            screenTemplateMaster.setIsDisabled(screenTemplateMasterDto.getIsDisabled());
-            screenTemplateMaster.setScreenField(screenTemplateMasterDto.getScreenField());
+            if (screenTemplateMasterDto.getSequence() != null)
+                screenTemplateMaster.setSequence(screenTemplateMasterDto.getSequence());
+            if (screenTemplateMasterDto.getPostScreens() != null)
+                screenTemplateMaster.setPostScreens(screenTemplateMasterDto.getPostScreens());
+            if (screenTemplateMasterDto.getPreScreens() != null)
+                screenTemplateMaster.setPreScreens(screenTemplateMasterDto.getPreScreens());
+            if (screenTemplateMasterDto.getScreenName() != null)
+                screenTemplateMaster.setScreenName(screenTemplateMasterDto.getScreenName());
+            if (screenTemplateMasterDto.getThumbnail() != null)
+                screenTemplateMaster.setThumbnail(screenTemplateMasterDto.getThumbnail());
+            if (screenTemplateMasterDto.getIsMandatory() != null)
+                screenTemplateMaster.setIsMandatory(screenTemplateMasterDto.getIsMandatory());
+            if (screenTemplateMasterDto.getIsDisabled() != null)
+                screenTemplateMaster.setIsDisabled(screenTemplateMasterDto.getIsDisabled());
+            if (screenTemplateMasterDto.getScreenField() != null)
+                screenTemplateMaster.setScreenField(screenTemplateMasterDto.getScreenField());
+            if(screenTemplateMasterDto.getStatus() !=null)
+                screenTemplateMaster.setStatus(screenTemplateMasterDto.getStatus());
             screenTemplateMaster.setOrgId(screenTemplateMasterDto.getOrgId());
             if (savingTemplateDetail(screenTemplateMasterDto))
                 screenTemplateMasterRepository.save(screenTemplateMaster);
@@ -315,6 +320,7 @@ public class TemplateServiceImpl implements TemplateService {
         ScreenTemplateDetails screenTemplateDetails;
         Optional<ScreenTemplateDetails> screenTemplateDetailsOptional = screenTemplateDetailRepository.findByScreenTemplateDetailId(String.valueOf(screenTemplateDetailsDto.getId()));
         if (screenTemplateDetailsOptional.isPresent()) {
+            log.info("update request received for screenId {}",screenTemplateDetailsDto.getId());
             screenTemplateDetails = screenTemplateDetailsOptional.get();
             updateScreenTemplateDetails(screenTemplateDetailsDto, screenTemplateDetails);
         } else {

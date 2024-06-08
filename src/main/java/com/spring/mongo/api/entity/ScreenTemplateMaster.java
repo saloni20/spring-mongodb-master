@@ -48,4 +48,7 @@ public class ScreenTemplateMaster {
 
     @Field("fieldsMap")
     private List<Object> fieldsMap;
+
+    @Field("status")
+    private String status;
 }

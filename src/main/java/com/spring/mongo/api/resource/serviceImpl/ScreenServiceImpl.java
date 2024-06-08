@@ -82,6 +82,7 @@ public class ScreenServiceImpl implements ScreenService {
         screenTemplateDetailsDto.setIsDisabled(screenTemplateDetails.getIsDisabled());
         screenTemplateDetailsDto.setScreenField(screenTemplateDetails.getScreenField());
         screenTemplateDetailsDto.setFieldsMap(screenTemplateDetails.getFieldsMap());
+        screenTemplateDetailsDto.setTemplateId(screenTemplateDetails.getTemplateId());
         return screenTemplateDetailsDto;
     }
 
