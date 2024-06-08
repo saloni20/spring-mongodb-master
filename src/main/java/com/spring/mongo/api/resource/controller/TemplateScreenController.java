@@ -71,4 +71,9 @@ public class TemplateScreenController {
         log.info("Request initiated for user with orgId {}", orgId);
         return templateService.findAllScreensDetailsByTemplateId(templateId, orgId);
     }
+
+    @GetMapping("/deleteTemplate/{templateId}")
+    public Response deleteByTemplateId(@PathVariable String templateId) {
+       return templateService.deleteScreenTemplate(templateId);
+    }
 }
