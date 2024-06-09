@@ -14,4 +14,6 @@ public interface UserMasterRepository extends MongoRepository<UserMaster, UserMa
     Optional<UserMaster> findByEmailAndUserMasterPK_orgId(String email, Long orgId);
 
     List<UserMaster> findAllByUserMasterPK_orgId(Long orgId);
+
+    Optional<UserMaster> findByUserIdAndUserMasterPK_orgId(Integer userId, Long orgId);
 }

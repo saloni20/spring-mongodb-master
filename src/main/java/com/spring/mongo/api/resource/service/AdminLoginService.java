@@ -12,4 +12,6 @@ public interface AdminLoginService {
     Response registerUser(AdminRegisterDto adminRegisterDto);
 
     void authenticate(String email, String password);
+
+    Response getUserProfile(Integer userId,Long orgId);
 }

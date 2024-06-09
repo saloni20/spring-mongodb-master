@@ -23,6 +23,8 @@ public class UserMaster implements UserDetails {
     private String email;
     private RoleMaster role;
     private String password;
+    private String organization;
+    private String mobile;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

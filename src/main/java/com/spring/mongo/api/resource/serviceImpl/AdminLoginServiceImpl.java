@@ -7,12 +7,14 @@ import com.spring.mongo.api.repository.UserMasterRepository;
 import com.spring.mongo.api.resource.dto.AdminRegisterDto;
 import com.spring.mongo.api.resource.dto.LoginRequestDto;
 import com.spring.mongo.api.resource.dto.LoginResponseDto;
+import com.spring.mongo.api.resource.dto.UserProfileData;
 import com.spring.mongo.api.resource.response.Response;
 import com.spring.mongo.api.resource.service.AdminLoginService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -102,4 +104,23 @@ public class AdminLoginServiceImpl implements AdminLoginService {
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(email, password);
         this.customAuthenticationProvider.authenticate(usernamePasswordAuthenticationToken);
     }
+
+
+
+    @Override
+    public Response getUserProfile(Integer userId,Long orgId) {
+        Optional<UserMaster> userMasterOptional = userMasterRepository.findByUserIdAndUserMasterPK_orgId(userId,orgId);
+        if (userMasterOptional.isPresent()) {
+            UserMaster userMaster = userMasterOptional.get();
+            UserProfileData userProfileData = new UserProfileData();
+            userProfileData.setUserId(userId);
+            userProfileData.setFirstName(userMaster.getFirstname());
+            userProfileData.setOrganization(userMaster.getOrganization());
+            userProfileData.setMobileNumber(userMaster.getMobile());
+            userProfileData.setRole(userMaster.getRole().name());
+            return new Response("Transaction completed successfully.",userMaster,HttpStatus.OK);
+        }
+        return new Response("No user found with this userId",HttpStatus.BAD_REQUEST);
+    }
+
 }

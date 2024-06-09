@@ -43,4 +43,11 @@ public class AdminLoginController {
         UserMaster userMaster = (UserMaster) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return "Hi " + userMaster.getUsername();
     }
+
+    @GetMapping("/getUser/{userId}/{orgId}")
+    public Response getAdmin(@PathVariable Integer userId,@PathVariable Long orgId) {
+         return  adminLoginService.getUserProfile(userId,orgId);
+    }
+
+
 }
