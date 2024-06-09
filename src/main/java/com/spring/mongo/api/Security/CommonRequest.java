@@ -8,4 +8,5 @@ import lombok.Setter;
 public class CommonRequest {
     private String id;
     private Object data;
+    private String method;
 }
