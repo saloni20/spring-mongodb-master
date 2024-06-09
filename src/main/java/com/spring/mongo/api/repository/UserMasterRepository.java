@@ -15,5 +15,5 @@ public interface UserMasterRepository extends MongoRepository<UserMaster, UserMa
 
     List<UserMaster> findAllByUserMasterPK_orgId(Long orgId);
 
-    Optional<UserMaster> findByUserIdAndUserMasterPK_orgId(Integer userId, Long orgId);
+    Optional<UserMaster> findByUserIdAndUserMasterPK_OrgId(Integer userId, Long orgId);
 }
