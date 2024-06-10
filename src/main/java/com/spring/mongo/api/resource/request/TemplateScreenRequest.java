@@ -14,5 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 public class TemplateScreenRequest {
     private Long orgId;
+    private String templateId;
+    private String templateName;
     private List<ScreenTemplateMasterDto> screenTemplateMasterDtoList;
 }
