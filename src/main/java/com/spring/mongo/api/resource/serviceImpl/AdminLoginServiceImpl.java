@@ -109,7 +109,7 @@ public class AdminLoginServiceImpl implements AdminLoginService {
 
     @Override
     public Response getUserProfile(Integer userId,Long orgId) {
-        Optional<UserMaster> userMasterOptional = userMasterRepository.findByUserIdAndUserMasterPK_OrgId(userId,orgId);
+        Optional<UserMaster> userMasterOptional = userMasterRepository.findByUserMasterPK_UserIdAndUserMasterPK_OrgId(userId,orgId);
         if (userMasterOptional.isPresent()) {
             UserMaster userMaster = userMasterOptional.get();
             UserProfileData userProfileData = new UserProfileData();

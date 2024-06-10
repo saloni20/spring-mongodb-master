@@ -49,5 +49,4 @@ public class AdminLoginController {
          return  adminLoginService.getUserProfile(userId,orgId);
     }
 
-
 }

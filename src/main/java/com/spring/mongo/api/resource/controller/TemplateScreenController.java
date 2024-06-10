@@ -76,4 +76,10 @@ public class TemplateScreenController {
     public Response deleteByTemplateId(@PathVariable String templateId) {
         return templateService.deleteScreenTemplate(templateId);
     }
+
+
+    @PostMapping("/updateTemplateDetail")
+    public Response updateTemplateDetail(@RequestBody TemplateScreenRequest templateScreenRequest) {
+        return templateService.updateTemplateDetail(templateScreenRequest);
+    }
 }

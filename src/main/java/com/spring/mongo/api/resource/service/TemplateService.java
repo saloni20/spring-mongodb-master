@@ -32,4 +32,6 @@ public interface TemplateService {
     Response updateScreenTemplateDetail(ScreenTemplateDetailsDto screenTemplateDetailsDto);
 
     Response saveScreenDetailsTemplate(TemplateScreenRequest templateScreenRequest);
+
+    Response updateTemplateDetail(TemplateScreenRequest templateScreenRequest);
 }

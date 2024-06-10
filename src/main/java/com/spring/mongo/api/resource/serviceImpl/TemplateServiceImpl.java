@@ -22,6 +22,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -66,8 +67,14 @@ public class TemplateServiceImpl implements TemplateService {
         return screenTemplateMaster;
     }
 
-    private static ScreenTemplateDetails getScreenTemplateDetails(ScreenTemplateMasterDto screenTemplateMasterDto) {
-        ScreenTemplateDetails screenTemplateDetails = new ScreenTemplateDetails();
+    private  ScreenTemplateDetails getScreenTemplateDetails(ScreenTemplateMasterDto screenTemplateMasterDto) {
+
+        Optional<ScreenTemplateDetails> screenTemplateDetailsOptional = screenTemplateDetailRepository.findByScreenTemplateDetailId(screenTemplateMasterDto.getScreenId());
+        ScreenTemplateDetails screenTemplateDetails = null;
+        if(screenTemplateDetailsOptional.isPresent())
+            screenTemplateDetails = screenTemplateDetailsOptional.get();
+        else
+            screenTemplateDetails = new ScreenTemplateDetails();
         if (screenTemplateMasterDto.getSequence() != null)
             screenTemplateDetails.setSequence(screenTemplateMasterDto.getSequence());
         if (screenTemplateMasterDto.getPostScreens() != null)
@@ -341,12 +348,12 @@ public class TemplateServiceImpl implements TemplateService {
 
     @Override
     public Response saveScreenDetailsTemplate(TemplateScreenRequest templateScreenRequest) {
-        List<ScreenTemplateDetails> screenTemplateDetailsList = screenTemplateDetailRepository.findByOrgId(templateScreenRequest.getOrgId());
-        List<String> screenDetailsIdList = new ArrayList<>();
+/*        List<ScreenTemplateDetails> screenTemplateDetailsList = screenTemplateDetailRepository.findByOrgIdOrderBySequenceAsc(templateScreenRequest.getOrgId());
         if (!CollectionUtils.isEmpty(screenTemplateDetailsList)) {
             log.info("already screens and template saved for the current orgId");
             updateTemplateScreenMasterDetails(templateScreenRequest, screenTemplateDetailsList);
-        }
+        }*/
+        List<String> screenDetailsIdList = new ArrayList<>();
         List<ScreenTemplateMasterDto> screenTemplateMasterDtoList = templateScreenRequest.getScreenTemplateMasterDtoList();
         for (ScreenTemplateMasterDto screenTemplateMasterDto : screenTemplateMasterDtoList) {
             ScreenTemplateDetails screenTemplateDetails = getScreenTemplateDetails(screenTemplateMasterDto);
@@ -356,6 +363,55 @@ public class TemplateServiceImpl implements TemplateService {
                 return new Response("No such template found", HttpStatus.BAD_REQUEST);
         }
         return new Response("Transaction completed successfully.", screenDetailsIdList, HttpStatus.OK);
+    }
+
+    @Override
+    public Response updateTemplateDetail(TemplateScreenRequest templateScreenRequest) {
+        List<ScreenTemplateMasterDto> screenTemplateMasterDtoList = templateScreenRequest.getScreenTemplateMasterDtoList();
+        Optional<TemplateDetail> templateDetailOptional = templateDetailRepository.findById(new ObjectId(templateScreenRequest.getTemplateId()));
+        List<ScreenTemplateDetails> screenTemplateDetailsList = screenTemplateDetailRepository.findByTemplateId(templateScreenRequest.getTemplateId());
+        if(!CollectionUtils.isEmpty(screenTemplateDetailsList)) {
+            screenTemplateDetailRepository.deleteAll(screenTemplateDetailsList);
+        }
+        TemplateDetail templateDetail;
+        if(templateDetailOptional.isPresent()) {
+            templateDetail = templateDetailOptional.get();
+            if(StringUtils.hasText(templateScreenRequest.getTemplateName()))
+              templateDetail.setTemplateName(templateScreenRequest.getTemplateName());
+            templateDetailRepository.save(templateDetail);
+        }
+        for(ScreenTemplateMasterDto screenTemplateMasterDto : screenTemplateMasterDtoList) {
+            ScreenTemplateDetails screenTemplateDetails = createNewScreenTemplateDetail(screenTemplateMasterDto);
+            screenTemplateDetailRepository.save(screenTemplateDetails);
+        }
+        return new Response("Transaction completed successfully.", HttpStatus.OK);
+
+    }
+
+    private ScreenTemplateDetails  createNewScreenTemplateDetail (ScreenTemplateMasterDto screenTemplateMasterDto) {
+        ScreenTemplateDetails screenTemplateDetails = new ScreenTemplateDetails();
+        if (screenTemplateMasterDto.getSequence() != null)
+            screenTemplateDetails.setSequence(screenTemplateMasterDto.getSequence());
+        if (screenTemplateMasterDto.getPostScreens() != null)
+            screenTemplateDetails.setPostScreens(screenTemplateMasterDto.getPostScreens());
+        if (screenTemplateMasterDto.getPreScreens() != null)
+            screenTemplateDetails.setPreScreens(screenTemplateMasterDto.getPreScreens());
+        if (screenTemplateMasterDto.getScreenName() != null)
+            screenTemplateDetails.setScreenName(screenTemplateMasterDto.getScreenName());
+        if (screenTemplateMasterDto.getThumbnail() != null)
+            screenTemplateDetails.setThumbnail(screenTemplateMasterDto.getThumbnail());
+        if (screenTemplateMasterDto.getIsMandatory() != null)
+            screenTemplateDetails.setIsMandatory(screenTemplateMasterDto.getIsMandatory());
+        if (screenTemplateMasterDto.getIsDisabled() != null)
+            screenTemplateDetails.setIsDisabled(screenTemplateMasterDto.getIsDisabled());
+        if (screenTemplateMasterDto.getScreenField() != null)
+            screenTemplateDetails.setScreenField(screenTemplateMasterDto.getScreenField());
+        if (screenTemplateMasterDto.getOrgId() != null)
+            screenTemplateDetails.setOrgId(screenTemplateMasterDto.getOrgId());
+        if(screenTemplateMasterDto.getTemplateId() != null)
+        screenTemplateDetails.setTemplateId(screenTemplateMasterDto.getTemplateId());
+        return screenTemplateDetails;
+
     }
 
     private void updateScreenTemplateDetails(ScreenTemplateDetailsDto screenTemplateDetailsDto, ScreenTemplateDetails screenTemplateDetails) {
