@@ -45,8 +45,7 @@ public class AdminLoginController {
     }
 
     @GetMapping("/getUser/{userId}/{orgId}")
-    public Response getAdmin(@PathVariable Integer userId,@PathVariable Long orgId) {
-         return  adminLoginService.getUserProfile(userId,orgId);
+    public Response getAdmin(@PathVariable Integer userId, @PathVariable Long orgId) {
+        return adminLoginService.getUserProfile(userId, orgId);
     }
-
 }

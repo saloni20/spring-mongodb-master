@@ -10,6 +10,7 @@ com\spring\mongo\api\resource\config\JwtAuthenticationFilter.class
 com\spring\mongo\api\entity\AddressDetails.class
 com\spring\mongo\api\repository\ScreenTemplateMasterRepository.class
 com\spring\mongo\api\resource\dto\ScreenTemplateMasterDto.class
+com\spring\mongo\api\resource\dto\UserProfileData.class
 com\spring\mongo\api\repository\ApplicationDetailRepository.class
 com\spring\mongo\api\entity\InputMaster.class
 com\spring\mongo\api\resource\dto\TemplateDetailDto.class

@@ -67,14 +67,11 @@ public class TemplateServiceImpl implements TemplateService {
         return screenTemplateMaster;
     }
 
-    private  ScreenTemplateDetails getScreenTemplateDetails(ScreenTemplateMasterDto screenTemplateMasterDto) {
+    private ScreenTemplateDetails getScreenTemplateDetails(ScreenTemplateMasterDto screenTemplateMasterDto) {
 
         Optional<ScreenTemplateDetails> screenTemplateDetailsOptional = screenTemplateDetailRepository.findByScreenTemplateDetailId(screenTemplateMasterDto.getScreenId());
-        ScreenTemplateDetails screenTemplateDetails = null;
-        if(screenTemplateDetailsOptional.isPresent())
-            screenTemplateDetails = screenTemplateDetailsOptional.get();
-        else
-            screenTemplateDetails = new ScreenTemplateDetails();
+        ScreenTemplateDetails screenTemplateDetails;
+        screenTemplateDetails = screenTemplateDetailsOptional.orElseGet(ScreenTemplateDetails::new);
         if (screenTemplateMasterDto.getSequence() != null)
             screenTemplateDetails.setSequence(screenTemplateMasterDto.getSequence());
         if (screenTemplateMasterDto.getPostScreens() != null)
@@ -370,17 +367,17 @@ public class TemplateServiceImpl implements TemplateService {
         List<ScreenTemplateMasterDto> screenTemplateMasterDtoList = templateScreenRequest.getScreenTemplateMasterDtoList();
         Optional<TemplateDetail> templateDetailOptional = templateDetailRepository.findById(new ObjectId(templateScreenRequest.getTemplateId()));
         List<ScreenTemplateDetails> screenTemplateDetailsList = screenTemplateDetailRepository.findByTemplateId(templateScreenRequest.getTemplateId());
-        if(!CollectionUtils.isEmpty(screenTemplateDetailsList)) {
+        if (!CollectionUtils.isEmpty(screenTemplateDetailsList)) {
             screenTemplateDetailRepository.deleteAll(screenTemplateDetailsList);
         }
         TemplateDetail templateDetail;
-        if(templateDetailOptional.isPresent()) {
+        if (templateDetailOptional.isPresent()) {
             templateDetail = templateDetailOptional.get();
-            if(StringUtils.hasText(templateScreenRequest.getTemplateName()))
-              templateDetail.setTemplateName(templateScreenRequest.getTemplateName());
+            if (StringUtils.hasText(templateScreenRequest.getTemplateName()))
+                templateDetail.setTemplateName(templateScreenRequest.getTemplateName());
             templateDetailRepository.save(templateDetail);
         }
-        for(ScreenTemplateMasterDto screenTemplateMasterDto : screenTemplateMasterDtoList) {
+        for (ScreenTemplateMasterDto screenTemplateMasterDto : screenTemplateMasterDtoList) {
             ScreenTemplateDetails screenTemplateDetails = createNewScreenTemplateDetail(screenTemplateMasterDto);
             screenTemplateDetailRepository.save(screenTemplateDetails);
         }
@@ -388,7 +385,7 @@ public class TemplateServiceImpl implements TemplateService {
 
     }
 
-    private ScreenTemplateDetails  createNewScreenTemplateDetail (ScreenTemplateMasterDto screenTemplateMasterDto) {
+    private ScreenTemplateDetails createNewScreenTemplateDetail(ScreenTemplateMasterDto screenTemplateMasterDto) {
         ScreenTemplateDetails screenTemplateDetails = new ScreenTemplateDetails();
         if (screenTemplateMasterDto.getSequence() != null)
             screenTemplateDetails.setSequence(screenTemplateMasterDto.getSequence());
@@ -408,8 +405,8 @@ public class TemplateServiceImpl implements TemplateService {
             screenTemplateDetails.setScreenField(screenTemplateMasterDto.getScreenField());
         if (screenTemplateMasterDto.getOrgId() != null)
             screenTemplateDetails.setOrgId(screenTemplateMasterDto.getOrgId());
-        if(screenTemplateMasterDto.getTemplateId() != null)
-        screenTemplateDetails.setTemplateId(screenTemplateMasterDto.getTemplateId());
+        if (screenTemplateMasterDto.getTemplateId() != null)
+            screenTemplateDetails.setTemplateId(screenTemplateMasterDto.getTemplateId());
         return screenTemplateDetails;
 
     }

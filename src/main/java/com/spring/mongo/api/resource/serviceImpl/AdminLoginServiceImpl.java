@@ -14,7 +14,6 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -106,10 +105,9 @@ public class AdminLoginServiceImpl implements AdminLoginService {
     }
 
 
-
     @Override
-    public Response getUserProfile(Integer userId,Long orgId) {
-        Optional<UserMaster> userMasterOptional = userMasterRepository.findByUserMasterPK_UserIdAndUserMasterPK_OrgId(userId,orgId);
+    public Response getUserProfile(Integer userId, Long orgId) {
+        Optional<UserMaster> userMasterOptional = userMasterRepository.findByUserMasterPK_UserIdAndUserMasterPK_OrgId(userId, orgId);
         if (userMasterOptional.isPresent()) {
             UserMaster userMaster = userMasterOptional.get();
             UserProfileData userProfileData = new UserProfileData();
@@ -118,9 +116,9 @@ public class AdminLoginServiceImpl implements AdminLoginService {
             userProfileData.setOrganization(userMaster.getOrganization());
             userProfileData.setMobileNumber(userMaster.getMobile());
             userProfileData.setRole(userMaster.getRole().name());
-            return new Response("Transaction completed successfully.",userMaster,HttpStatus.OK);
+            return new Response("Transaction completed successfully.", userMaster, HttpStatus.OK);
         }
-        return new Response("No user found with this userId",HttpStatus.BAD_REQUEST);
+        return new Response("No user found with this userId", HttpStatus.BAD_REQUEST);
     }
 
 }

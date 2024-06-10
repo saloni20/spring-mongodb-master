@@ -62,6 +62,7 @@ E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\s
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\controller\TemplateScreenController.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\entity\UserMaster.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\controller\InputController.java
+E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\dto\UserProfileData.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\entity\InputMaster.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\repository\ScreenTemplateDetailRepository.java
 E:\hackathon\spring-mongodb-master\src\main\java\com\spring\mongo\api\resource\config\JwtAuthenticationFilter.java
