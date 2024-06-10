@@ -17,7 +17,7 @@ public class ApiController {
     private final ApiServiceImpl apiService;
 
     @GetMapping("/get")
-    public String getApiResponse(@RequestBody  String url) {
+    public String getApiResponse(@RequestBody String url) {
         return apiService.makeGetRequest(url);
     }
 

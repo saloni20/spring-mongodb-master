@@ -169,17 +169,17 @@ public class TemplateServiceImpl implements TemplateService {
     }
 
     @Override
-    public Response deleteScreenTemplate(String  templateId) {
+    public Response deleteScreenTemplate(String templateId) {
         List<ScreenTemplateDetails> screenTemplateDetailsList = screenTemplateDetailRepository.findByTemplateId(templateId);
         Optional<TemplateDetail> templateDetailOptional = templateDetailRepository.findById(new ObjectId(templateId));
-        if(!CollectionUtils.isEmpty(screenTemplateDetailsList)) {
+        if (!CollectionUtils.isEmpty(screenTemplateDetailsList)) {
             screenTemplateDetailRepository.deleteAll(screenTemplateDetailsList);
         }
-        if(templateDetailOptional.isPresent()) {
+        if (templateDetailOptional.isPresent()) {
             TemplateDetail templateDetail = templateDetailOptional.get();
             templateDetailRepository.delete(templateDetail);
         }
-        return new Response("Screen Templates Deleted Successfully",HttpStatus.OK);
+        return new Response("Screen Templates Deleted Successfully", HttpStatus.OK);
     }
 
     @Override
@@ -379,7 +379,7 @@ public class TemplateServiceImpl implements TemplateService {
             screenTemplateDetails.setStatus(screenTemplateDetailsDto.getStatus());
         if (screenTemplateDetailsDto.getFieldsMap() != null)
             screenTemplateDetails.setFieldsMap(screenTemplateDetailsDto.getFieldsMap());
-        if(screenTemplateDetailsDto.getTemplateId() != null)
+        if (screenTemplateDetailsDto.getTemplateId() != null)
             screenTemplateDetails.setTemplateId(screenTemplateDetailsDto.getTemplateId());
         screenTemplateDetailRepository.save(screenTemplateDetails);
     }
