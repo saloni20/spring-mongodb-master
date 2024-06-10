@@ -39,7 +39,13 @@ public class ApiServiceImpl {
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<Object> entity = new HttpEntity<>(requestObject.getData(), headers);
         log.info("Request  http://localhost:{}", PORT + requestObject.getId());
-        ResponseEntity<String> response = restTemplate.exchange("http://localhost:" + PORT + requestObject.getId(), HttpMethod.POST, entity, String.class);
+        HttpMethod method;
+        if (requestObject.getMethod().equals("GET")) {
+            method = HttpMethod.valueOf("GET");
+        } else {
+            method = HttpMethod.valueOf("POST");
+        }
+        ResponseEntity<String> response = restTemplate.exchange("http://localhost:" + PORT + requestObject.getId(), method, entity, String.class);
         return response.getBody();
     }
 }
