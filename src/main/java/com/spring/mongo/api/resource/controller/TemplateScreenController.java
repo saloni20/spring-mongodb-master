@@ -74,6 +74,6 @@ public class TemplateScreenController {
 
     @GetMapping("/deleteTemplate/{templateId}")
     public Response deleteByTemplateId(@PathVariable String templateId) {
-       return templateService.deleteScreenTemplate(templateId);
+        return templateService.deleteScreenTemplate(templateId);
     }
 }

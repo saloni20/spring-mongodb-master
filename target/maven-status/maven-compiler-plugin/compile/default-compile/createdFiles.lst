@@ -63,7 +63,6 @@ com\spring\mongo\api\resource\serviceImpl\AdminLoginServiceImpl.class
 com\spring\mongo\api\resource\service\DataDetailsService.class
 com\spring\mongo\api\Security\ApiServiceImpl.class
 com\spring\mongo\api\Security\AppConfig.class
-com\spring\mongo\api\resource\config\UserModelListener.class
 com\spring\mongo\api\resource\request\TemplateDetailRequest.class
 com\spring\mongo\api\resource\serviceImpl\ScreenServiceImpl.class
 com\spring\mongo\api\resource\controller\DataDetailsController.class
@@ -80,7 +79,6 @@ com\spring\mongo\api\resource\service\TemplateService.class
 com\spring\mongo\api\resource\request\FieldRequest.class
 com\spring\mongo\api\resource\config\SecurityConfig.class
 com\spring\mongo\api\resource\serviceImpl\JwtHelper.class
-com\spring\mongo\api\URLDecryption.class
 com\spring\mongo\api\resource\controller\InputController.class
 com\spring\mongo\api\resource\serviceImpl\FieldServiceImpl.class
 com\spring\mongo\api\entity\RowData.class

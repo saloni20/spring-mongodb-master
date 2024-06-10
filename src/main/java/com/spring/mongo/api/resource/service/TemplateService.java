@@ -17,7 +17,7 @@ public interface TemplateService {
 
     Response updateTemplateScreenMaster(TemplateScreenRequest templateScreenRequest, List<ScreenTemplateMaster> screenTemplateMasterList);
 
-    Response deleteScreenTemplate(String  templateId);
+    Response deleteScreenTemplate(String templateId);
 
     Response findAllScreensByTemplateId(String objectId, Long orgId);
 
